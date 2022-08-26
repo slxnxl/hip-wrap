@@ -15,8 +15,6 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Hip-Wrap</a>
         </h1>
-        <p>test for aaaaa</p>
-
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
