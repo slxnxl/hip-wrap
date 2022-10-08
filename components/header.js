@@ -25,18 +25,22 @@ import styles from "../styles/Home.module.css";
 export default function Header() {
     // const { isOpen, onOpen, onClose } = useDisclosure();
     return (
+        // TODO перенести контейнер в родительский блок
         <Container maxW='1200'>
         <Box px={5}>
             <Flex h={16} alignItems={'center'} justifyContent={'space-between'} >
                         <Heading as='h3' size='lg' fontWeight={'800'} className={styles.logo}>HIP WRAP</Heading>
-                        <ButtonGroup gap='2'>
-                        <Button colorScheme='gray' variant='ghost' className={"menu-button"}>главная</Button>
-                        <Button colorScheme='gray' variant='ghost' className={"menu-button"}>магазин</Button>
-                        <Button colorScheme='gray' variant='ghost' className={"menu-button"}>контакты</Button>
+                        <ButtonGroup gap='5'>
+                            <Button colorScheme='black' variant='link' className={"menu-button"}>главная</Button>
+                            <Button colorScheme='black' variant='link' className={"menu-button"}>магазин</Button>
+                            <Button colorScheme='black' variant='link' className={"menu-button"}>контакты</Button>
                         </ButtonGroup>
             </Flex>
         </Box>
         </Container>
     )
 }
+
+// TODO create mobile header
+
 
