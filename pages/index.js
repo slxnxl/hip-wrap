@@ -56,7 +56,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Create by slxnxl{' '}
+          Create by slxnxl
         </a>
       </footer>
     </div>
