@@ -7,6 +7,7 @@ import {  Box,
     Button,
     Menu,
     MenuButton,
+    ButtonGroup,
     MenuList,
     MenuItem,
     MenuDivider,
@@ -17,18 +18,19 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import Image from 'next/image'
 
 export default function Header() {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    // const { isOpen, onOpen, onClose } = useDisclosure();
     return (
-        <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-            <Flex h={16} alignItems={'center'} justifyContent={'space-evenly'}>
+        <Box px={5}>
+            <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
                 <Image src={"/vercel.svg"}
                 width={100} height={50}
                        alt={"logo"}
                 />
-                <Button>Проекты</Button>
-                <Button>Магазин</Button>`
-                <Button>Контакты</Button>
-                <Button>Соц сети</Button>
+                        <ButtonGroup gap='2'>
+                        <Button className={"menu-button"}>Главная</Button>
+                        <Button className={"menu-button"}>Магазин</Button>
+                        <Button className={"menu-button"}>Контакты</Button>
+                        </ButtonGroup>
             </Flex>
         </Box>
     )
