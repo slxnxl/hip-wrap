@@ -23,11 +23,12 @@ export default function Header() {
             <Flex h={16} alignItems={'center'} justifyContent={'space-evenly'}>
                 <Image src={"/vercel.svg"}
                 width={100} height={50}
+                       alt={"logo"}
                 />
-                <div>Проекты</div>
-                <div>Магазин</div>
-                <div>Контакты</div>
-                <div>Соц сети</div>
+                <Button>Проекты</Button>
+                <Button>Магазин</Button>`
+                <Button>Контакты</Button>
+                <Button>Соц сети</Button>
             </Flex>
         </Box>
     )
