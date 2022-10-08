@@ -103,9 +103,31 @@
   line-height: 1.5;
 }
 
+
 .logo {
-  height: 1em;
-  margin-left: 0.5rem;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: all 0.5s;
+  font-variation-settings: "wght" 800, "ital" 0;
+  text-shadow: none;
+}
+
+.logo:hover {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: all 0.5s;
+  font-variation-settings: "wght" 500, "ital" 1;
+  text-shadow:
+  3px 3px 0px #01d3e6,
+  6px 6px 0px #f40468,
+  6px 6px 0px #d6f4f4;
+  cursor: pointer;
 }
 
 @media (max-width: 600px) {
