@@ -6,8 +6,11 @@ export default function Large ({project}) {
     let height_size = project.height_size
     // TODO заменить цвет на изображение
     return (
-        <Box bg={project.color} flex={flex_size} height={height_size}>
-            <p>large block</p>
+        <Box bg={project.color}
+             flex={flex_size}
+             height={height_size}
+        >
+                <p>large block</p>
         </Box>
     )
 }
