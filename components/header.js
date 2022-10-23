@@ -29,7 +29,7 @@ export default function Header() {
         <Container maxW='1200'>
         <Box px={5}>
             <Flex h={16} alignItems={'center'} justifyContent={'space-between'} >
-                        <Heading as='h3' size='lg' fontWeight={'800'} className={styles.logo}>HIP WRAP</Heading>
+                        <Heading as='h3' size='lg' fontWeight={'800'} className={styles.logo}>HIPWRAP</Heading>
                         <ButtonGroup gap='5'>
                             <Button colorScheme='black' variant='link' className={"menu-button"}>главная</Button>
                             <Button colorScheme='black' variant='link' className={"menu-button"}>магазин</Button>
