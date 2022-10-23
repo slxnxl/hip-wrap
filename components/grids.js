@@ -3,7 +3,7 @@
 // TODO create grid projects
 
 import {Box, Flex} from "@chakra-ui/react";
-import Large from "./grid-project/large";
+import BlockGrid from "./grid-project/blockGrid";
 
 export default function Grids ({ projects }) {
     //TODO test data, delete later
@@ -47,22 +47,22 @@ export default function Grids ({ projects }) {
         // Template flexbox
         <Box>
             <Flex justify-content={"space-around"} maxW="100%" gap={1}>
-                <Large project={project1}></Large>
-                <Large project={project2}></Large>
-                <Large project={project3}></Large>
+                <BlockGrid project={project1}></BlockGrid>
+                <BlockGrid project={project2}></BlockGrid>
+                <BlockGrid project={project3}></BlockGrid>
             </Flex>
             <Flex maxW="100%" gap={1} direction={'row'}>
                 <Box display='flex' gap={1} flex={'0.6'} direction={'row'}>
-                    <Large project={project4}></Large>
-                    <Large project={project5}></Large>
+                    <BlockGrid project={project4}></BlockGrid>
+                    <BlockGrid project={project5}></BlockGrid>
                 </Box>
-                <Large project={project6}></Large>
-                <Large project={project7}></Large>
+                <BlockGrid project={project6}></BlockGrid>
+                <BlockGrid project={project7}></BlockGrid>
             </Flex>
             <Flex maxW="100%" gap={1}>
-                <Large project={project2}></Large>
-                <Large project={project3}></Large>
-                <Large project={project1}></Large>
+                <BlockGrid project={project2}></BlockGrid>
+                <BlockGrid project={project3}></BlockGrid>
+                <BlockGrid project={project1}></BlockGrid>
             </Flex>
         </Box>
     )
