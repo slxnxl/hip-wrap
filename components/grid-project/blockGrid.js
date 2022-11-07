@@ -1,20 +1,37 @@
-import {Box, Img, Text} from "@chakra-ui/react";
+import {AspectRatio, Box, Text} from "@chakra-ui/react";
 
 
 export default function BlockGrid ({project}) {
     let flex_size = project.flex_size
     let height_size = project.height_size
-    // TODO заменить цвет на изображение
-    return (
-        <Box
-             backgroundImage="url('/project_3.jpg')"
-             backgroundPosition="center"
-             flex={flex_size}
-             height={height_size}
-             background-image='/project_1.jpg'
-             mb={1}
-        >
-            <Text>hello</Text>
-        </Box>
-    )
+    //TODO грузить видео 1 раз + кэшировать
+    if (project.video === true) {
+        return (<Box
+            as="video"
+            src='/test.webm'
+            objectFit='cover'
+            loop="true"
+            autoplay="true"
+            muted="true"
+            overflow='hidden'
+            flex={flex_size}
+            height={height_size}
+            mb={1}>
+        </Box>)
+    }
+    else {
+        return (
+            <Box
+                overflow='hidden'
+                backgroundImage="url('/project_2.jpg')"
+                backgroundPosition="center"
+                bgSize='cover'
+                flex={flex_size}
+                height={height_size}
+                mb={1}
+            >
+                <Text>hello</Text>
+            </Box>
+        )
+    }
 }
