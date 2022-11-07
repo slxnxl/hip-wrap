@@ -10,7 +10,8 @@ export default function Grids ({ projects }) {
     let project1 = {
         'flex_size' : '0.6',
         'height_size' : '70vh',
-        'color' : 'blue'
+        'color' : 'blue',
+        'video': true
     }
     let project2 = {
         'flex_size' : '0.4',

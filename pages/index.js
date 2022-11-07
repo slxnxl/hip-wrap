@@ -5,6 +5,7 @@ import Grids from "../components/grids";
 import FilterButton from "../components/filterButton";
 
 export default function Home() {
+    let choiceTag = ''
   return (
     <div className={styles.container}>
       <Head>

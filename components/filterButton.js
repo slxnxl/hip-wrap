@@ -12,8 +12,6 @@ export default function  FilterButton() {
                 <Tab>полировка</Tab>
                 <Tab>керамика</Tab>
                 <Tab>химчистка</Tab>
-                <Tab>химчистка</Tab>
-                <Tab>химчистка</Tab>
                 {/*<Tab onClick={ChangeChoice('123')}>{choiceTag}</Tab>*/}
             </TabList>
         </Tabs>
