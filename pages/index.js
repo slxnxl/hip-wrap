@@ -3,9 +3,13 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Grids from "../components/grids";
 import FilterButton from "../components/filterButton";
+import React from "react";
 
 export default function Home() {
-    let choiceTag = ''
+
+  const [target, setTarget] = React.useState(0);
+  console.log("target ", target);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,8 +18,8 @@ export default function Home() {
         <link rel="icon" href="public/favicon.ico" />
       </Head>
       <main>
-          <FilterButton></FilterButton>
-          <Grids></Grids>
+        <FilterButton setTarget={setTarget}></FilterButton>
+        <Grids target={target}></Grids>
       </main>
 
       <footer className={styles.footer}>
