@@ -1,13 +1,49 @@
-
 {
-  "project_1" : {
-    "name" : "project_1",
-    "description" : "some about project_1",
-    "image": "project_1"
-  },
-  "project_2" : {
-    "name" : "project_2",
-    "description" : "some about project_2",
-    "image": "project_2"
-  }
+    "project_1": {
+        "name": "project_1",
+        "description": "some about project_1",
+        "image": "project_1"
+    },
+    "project_2": {
+        "name": "project_2",
+        "description": "some about project_2",
+        "image": "project_2"
+    }
+}
+
+let project1 = {
+  'flex_size': '0.6',
+  'height_size': '70vh',
+  'color': 'blue',
+  'video': true
+}
+let project2 = {
+  'flex_size': '0.4',
+  'height_size': '70vh',
+  'color': 'tomato'
+}
+let project3 = {
+  'flex_size': '0.4',
+  'height_size': '70vh',
+  'color': 'black'
+}
+let project4 = {
+  'flex_size': '0.5',
+  'height_size': '40vh',
+  'color': 'black'
+}
+let project5 = {
+  'flex_size': '0.5',
+  'height_size': '40vh',
+  'color': 'tomato'
+}
+let project6 = {
+  'flex_size': '0.4',
+  'height_size': '40vh',
+  'color': 'green'
+}
+let project7 = {
+  'flex_size': '0.4',
+  'height_size': '40vh',
+  'color': 'yellow'
 }
