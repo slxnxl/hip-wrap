@@ -1,6 +1,6 @@
 .container {
-  padding: 0 2rem;
-  max-width:1440px;
+
+  /*max-width:1440px;*/
   margin: 0 auto;
 }
 
@@ -150,4 +150,9 @@
   .logo img {
     filter: invert(1);
   }
+}
+
+.image_box:hover {
+    transform: scale(1.5);
+    transition: all 2s ease-in;
 }
