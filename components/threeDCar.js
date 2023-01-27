@@ -27,7 +27,7 @@ export const CarThree = () => (
             </Float>
             {/* Background */}
             <mesh scale={300}>
-                <sphereGeometry args={[1, 64, 64]} />
+                <sphereGeometry args={[2, 64, 64]} />
                 <LayerMaterial side={THREE.BackSide}>
                     <Color color="#444" alpha={1} mode="normal" />
                     <Depth colorA="blue" colorB="black" alpha={0.5} mode="normal" near={0} far={300} origin={[100, 100, 100]} />
@@ -36,7 +36,9 @@ export const CarThree = () => (
         </Environment>
 
         <BakeShadows />
-        <CameraRig />
+        {/*<CameraRig />*/}
+        {/*https://codesandbox.io/s/qyz5r для совмещения вращения и свободного поворота мышкой*/}
+        {/*https://codesandbox.io/s/ymb5d9 для размещения надписи на машине*/}
         <OrbitControls enablePan={false} enableZoom={true} minPolarAngle={Math.PI / 2.2} maxPolarAngle={Math.PI / 2.2} />
     </Canvas>
 )
@@ -44,11 +46,16 @@ export const CarThree = () => (
 function Porsche(props) {
     const { scene, nodes, materials } = useGLTF('/911-transformed.glb')
     useMemo(() => {
+        // TODO изучить подробнее возможности работы с моделькой
         Object.values(nodes).forEach((node) => node.isMesh && (node.receiveShadow = node.castShadow = true))
+        //колеса
         applyProps(materials.rubber, { color: '#222', roughness: 0.6, roughnessMap: null, normalScale: [4, 4] })
-        applyProps(materials.window, { color: 'white', roughness: 0, clearcoat: 0.1 })
-        applyProps(materials.coat, { envMapIntensity: 4, roughness: 0.5, metalness: 1 })
-        applyProps(materials.paint, { roughness: 0.5, metalness: 0.8, color: '#555', envMapIntensity: 2 })
+        //окна
+        applyProps(materials.window, { color: 'gray', roughness: 0, clearcoat: 0.1 })
+        //кузов
+        applyProps(materials.coat, {color: "green", envMapIntensity: 4, roughness: 0.5, metalness: 1 })
+        //что-то тоже с кузовом
+        applyProps(materials.paint, { roughness: 0.5, metalness: 0.8, color: 'red', envMapIntensity: 2 })
         // nodes.yellow_WhiteCar_0.material = new THREE.MeshPhysicalMaterial({
         //     roughness: 0.3,
         //     metalness: 0.05,
@@ -64,8 +71,9 @@ function Porsche(props) {
 function CameraRig({ v = new THREE.Vector3() }) {
     return useFrame((state) => {
         const t = state.clock.elapsedTime
-        state.camera.position.lerp(v.set(Math.sin(t / 5), 0, 10 + Math.cos(t / 5)), 0.05)
-        state.camera.lookAt(0, 0, 0)
+        state.camera.position.lerp(v.set(Math.sin(t / 5), -10, 12 + Math.cos(t / 5)), 0.05)
+        // расположение камеры (поднять машину выше или ниже)
+        state.camera.lookAt(0, -0.5, 0)
     })
 }
 

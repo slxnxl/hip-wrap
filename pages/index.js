@@ -14,7 +14,6 @@ export default function Home() {
   console.log("target ", target);
 
   return (
-
     <div className={styles.container}>
       <Head>
         <title>HIPWRAP</title>
