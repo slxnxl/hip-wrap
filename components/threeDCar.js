@@ -1,13 +1,26 @@
 import * as THREE from 'three'
 import { useMemo, useRef } from 'react'
 import { Canvas, applyProps, useFrame } from '@react-three/fiber'
-import {Environment, Lightformer, Float, useGLTF, BakeShadows, ContactShadows, OrbitControls} from '@react-three/drei'
+import {
+    Environment,
+    Lightformer,
+    Float,
+    useGLTF,
+    BakeShadows,
+    ContactShadows,
+    OrbitControls,
+    useTexture, Decal
+} from '@react-three/drei'
 import { LayerMaterial, Color, Depth } from 'lamina'
 
 // TODO можно настроить камеры как в исходном решении
-export const CarThree = () => (
+
+export function CarThree  () {
+
+    return (
     <Canvas shadows dpr={[1, 2]} camera={{ position: [-10, 0, 15], fov: 30 }}>
         <Porsche scale={1.6} position={[0, -0.20, 0]} rotation={[0, Math.PI / 5, 0]} />
+        <CreateLogoInCar/>
         <spotLight position={[0, 15, 0]} angle={0.3} penumbra={1} castShadow intensity={2} shadow-bias={-0.0001} />
         <ambientLight intensity={0.2} />
         <ContactShadows resolution={1024} frames={1} position={[0, -1.16, 0]} scale={10} blur={3} opacity={1} far={10} />
@@ -41,10 +54,11 @@ export const CarThree = () => (
         {/*https://codesandbox.io/s/ymb5d9 для размещения надписи на машине*/}
         <OrbitControls enablePan={false} enableZoom={true} minPolarAngle={Math.PI / 2.2} maxPolarAngle={Math.PI / 2.2} />
     </Canvas>
-)
+)}
 
 function Porsche(props) {
     const { scene, nodes, materials } = useGLTF('/911-transformed.glb')
+
     useMemo(() => {
         // TODO изучить подробнее возможности работы с моделькой
         Object.values(nodes).forEach((node) => node.isMesh && (node.receiveShadow = node.castShadow = true))
@@ -53,9 +67,9 @@ function Porsche(props) {
         //окна
         applyProps(materials.window, { color: 'gray', roughness: 0, clearcoat: 0.1 })
         //кузов
-        applyProps(materials.coat, {color: "green", envMapIntensity: 4, roughness: 0.5, metalness: 1 })
+        applyProps(materials.coat, {color: "gold", envMapIntensity: 4, roughness: 0.5, metalness: 1 })
         //что-то тоже с кузовом
-        applyProps(materials.paint, { roughness: 0.5, metalness: 0.8, color: 'red', envMapIntensity: 2 })
+        applyProps(materials.paint, { roughness: 0.5, metalness: 0.8, color: 'rose', envMapIntensity: 2 })
         // nodes.yellow_WhiteCar_0.material = new THREE.MeshPhysicalMaterial({
         //     roughness: 0.3,
         //     metalness: 0.05,
@@ -68,6 +82,8 @@ function Porsche(props) {
     return <primitive object={scene} {...props} />
 }
 
+// TODO https://casesandberg.github.io/react-color/#create для задания сolor
+
 function CameraRig({ v = new THREE.Vector3() }) {
     return useFrame((state) => {
         const t = state.clock.elapsedTime
@@ -75,6 +91,14 @@ function CameraRig({ v = new THREE.Vector3() }) {
         // расположение камеры (поднять машину выше или ниже)
         state.camera.lookAt(0, -0.5, 0)
     })
+}
+
+// https://stackoverflow.com/questions/66624762/threejs-decal-not-showing для решения проблемы
+// https://stackoverflow.com/questions/68689436/add-dynamic-texture-to-model-using-three-js-and-react-three-fiber-and-gltfjsx
+// https://stackoverflow.com/questions/71589738/how-do-i-properly-use-drei-usegltf
+function CreateLogoInCar() {
+    const pmndrs = useTexture('/logo.svg')
+    return( <Decal position={[-1.0, 1.75, 0.6]} rotation={-0.7} scale={0.25} map={pmndrs} map-anisotropy={16} />)
 }
 
 function MovingSpots({ positions = [2, 0, 2, 0, 2, 0, 2, 0] }) {
