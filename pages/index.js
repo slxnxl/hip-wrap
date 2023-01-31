@@ -7,6 +7,7 @@ import React, {Suspense} from "react";
 import {CarThree} from "../components/threeDCar";
 import {Box} from "@chakra-ui/react";
 import Footer from "../components/footer";
+import Car from "../components/newCar";
 
 export default function Home() {
 
@@ -22,7 +23,10 @@ export default function Home() {
       </Head>
       <main>
         {/*  TODO место под 3d тачку*/}
-          <Box w='100%' h='50vh'> <Suspense fallback={null}><CarThree></CarThree></Suspense></Box>
+          <Box w='100%' h='50vh'> <Suspense fallback={null}>
+              <CarThree></CarThree>
+              {/*<Car/>*/}
+          </Suspense></Box>
         <FilterButton setTarget={setTarget}></FilterButton>
         <Grids target={target}></Grids>
       </main>

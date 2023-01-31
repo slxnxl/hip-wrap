@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { useMemo, useRef } from 'react'
-import { Canvas, applyProps, useFrame } from '@react-three/fiber'
+import {Canvas, applyProps, useFrame, useLoader} from '@react-three/fiber'
 import {
     Environment,
     Lightformer,
@@ -12,6 +12,8 @@ import {
     useTexture, Decal
 } from '@react-three/drei'
 import { LayerMaterial, Color, Depth } from 'lamina'
+import {MeshPhongMaterial, TextureLoader} from "three";
+import {Model} from "../public/Black_ferrari_488_gtb";
 
 // TODO можно настроить камеры как в исходном решении
 
@@ -19,8 +21,10 @@ export function CarThree  () {
 
     return (
     <Canvas shadows dpr={[1, 2]} camera={{ position: [-10, 0, 15], fov: 30 }}>
-        <Porsche scale={1.6} position={[0, -0.20, 0]} rotation={[0, Math.PI / 5, 0]} />
-        <CreateLogoInCar/>
+        {/*<Porsche scale={1.6} position={[0, -0.20, 0]} rotation={[0, Math.PI / 5, 0]} />*/}
+        <Model scale={1.6} position={[0, -1.6, 0]} rotation={[0, Math.PI / 5, 0]} />
+        {/*<Ferrari scale={1.6} position={[0, -0.20, 0]} rotation={[0, Math.PI / 5, 0]} />*/}
+        {/*<CreateLogoInCar/>*/}
         <spotLight position={[0, 15, 0]} angle={0.3} penumbra={1} castShadow intensity={2} shadow-bias={-0.0001} />
         <ambientLight intensity={0.2} />
         <ContactShadows resolution={1024} frames={1} position={[0, -1.16, 0]} scale={10} blur={3} opacity={1} far={10} />
@@ -56,12 +60,31 @@ export function CarThree  () {
     </Canvas>
 )}
 
+// try to get new modele car
+function Ferrari(props) {
+    const { nodes, materials } = useGLTF('/black_ferrari_488_gtb.glb')
+    console.log("node ferrari: ", nodes)
+    return (
+        <group {...props} dispose={null}>
+            <mesh castShadow receiveShadow geometry={nodes.Circle002_1.geometry} material={materials.alloy} />
+        </group>
+    )
+}
 function Porsche(props) {
     const { scene, nodes, materials } = useGLTF('/911-transformed.glb')
+    // const pmndrs = useTexture('/logo.svg')
+    console.log("scene: ", scene.children[0].children[0].children[4].children)
+    // const imageDecal = useLoader(TextureLoader, '/logo.svg');
+
 
     useMemo(() => {
+        console.log("materials: ", materials)
+        console.log("Object: ", Object)
         // TODO изучить подробнее возможности работы с моделькой
         Object.values(nodes).forEach((node) => node.isMesh && (node.receiveShadow = node.castShadow = true))
+        scene.traverse((object) => {
+            console.log("object: ", object)
+        })
         //колеса
         applyProps(materials.rubber, { color: '#222', roughness: 0.6, roughnessMap: null, normalScale: [4, 4] })
         //окна
@@ -78,8 +101,38 @@ function Porsche(props) {
         //     clearcoatRoughness: 0,
         //     clearcoat: 1
         // })
+        // Object.values(nodes).forEach((node) => node.isMesh && console.log("node: ", node))
+        // console.log(imageDecal);
+        //
+        // imageDecal.flipY = false;
+        // imageDecal.encoding = 3001;
+
+        // const a = scene.children[0].children[0].children[3].children[0].children
+        //
+        // a.material = new MeshPhongMaterial();
+        // a.material.shininess = 100;
+        // a.material.transparent = true;
+        // a.material.needsUpdate = true;
+        // a.material.color = '#ff0000'
+        // a.material.map = imageDecal;
+        // a.material = new MeshPhongMaterial();
+        // a.material.shininess = 100;
+        // a.material.map = pmndrs;
+        // console.log("a: ", a)
+
+        console.log("nodes: ", nodes)
     }, [nodes, materials])
-    return <primitive object={scene} {...props} />
+
+
+    return (
+        <primitive object={scene} {...props}>
+        {/*/!*<mesh castShadow receiveShadow geometry={nodes.bunny.geometry} {...props} dispose={null}>*!/*/}
+        {/*    <mesh castShadow receiveShadow geometry={scene.children[1]} dispose={null}>*/}
+        {/*        <Decal debug={true} position={[0, 0, 0]} rotation={0} scale={2} map={pmndrs} />*/}
+        {/*</mesh>*/}
+
+    </primitive>
+    )
 }
 
 // TODO https://casesandberg.github.io/react-color/#create для задания сolor
@@ -96,10 +149,10 @@ function CameraRig({ v = new THREE.Vector3() }) {
 // https://stackoverflow.com/questions/66624762/threejs-decal-not-showing для решения проблемы
 // https://stackoverflow.com/questions/68689436/add-dynamic-texture-to-model-using-three-js-and-react-three-fiber-and-gltfjsx
 // https://stackoverflow.com/questions/71589738/how-do-i-properly-use-drei-usegltf
-function CreateLogoInCar() {
-    const pmndrs = useTexture('/logo.svg')
-    return( <Decal position={[-1.0, 1.75, 0.6]} rotation={-0.7} scale={0.25} map={pmndrs} map-anisotropy={16} />)
-}
+// function CreateLogoInCar() {
+//
+//     return( )
+// }
 
 function MovingSpots({ positions = [2, 0, 2, 0, 2, 0, 2, 0] }) {
     const group = useRef()
