@@ -59,6 +59,7 @@ export function Model(props) {
               <Decal position={[0, 1.2, 0.75]} rotation={0.3} scale={[3, 3, 3]}>
                 <meshStandardMaterial roughness={0.6} transparent polygonOffset polygonOffsetFactor={-10}>
                   <RenderTexture attach="map" anisotropy={16}>
+                    {/*мб убрать данную строчку?*/}
                     <PerspectiveCamera makeDefault manual aspect={0.9 / 0.25} position={[0, 0, 5]} />
                     <color attach="background" args={['#af2040']} />
                     <ambientLight intensity={0.5} />
