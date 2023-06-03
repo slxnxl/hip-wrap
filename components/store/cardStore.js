@@ -1,6 +1,6 @@
 import {Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, Image, Stack, Text} from "@chakra-ui/react";
 
-// TODO кастомизировать
+// TODO кастомизировать и добавить пропсы
 // https://chakra-ui.com/docs/components/link-overlay#
 export default function CardStore () {
     return  (

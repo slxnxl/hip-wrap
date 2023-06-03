@@ -24,7 +24,7 @@ export default function Home() {
       <main>
         {/*  TODO место под 3d тачку*/}
           <Box w='100%' h='50vh'> <Suspense fallback={null}>
-              {/*<CarThree></CarThree>*/}
+              <CarThree></CarThree>
               {/*<Car/>*/}
           </Suspense></Box>
         <FilterButton setTarget={setTarget}></FilterButton>
