@@ -1,8 +1,9 @@
 import '../styles/globals.css'
 // pages/_app.js
-import {ChakraProvider, Heading} from '@chakra-ui/react'
+import {Box, ChakraProvider, Heading} from '@chakra-ui/react'
 import { extendTheme } from '@chakra-ui/react'
 import Header from "../components/header"
+import ContactUSBtn from "../components/contactUsBtn";
 
 
 const theme = extendTheme({
@@ -18,6 +19,7 @@ function MyApp({ Component, pageProps }) {
   return (
       <ChakraProvider theme={theme}>
           <Header></Header>
+         <ContactUSBtn></ContactUSBtn>
         <Component {...pageProps} />
       </ChakraProvider>
   )

@@ -7,14 +7,19 @@ Source: https://sketchfab.com/3d-models/black-ferrari-488-gtb-e4d3246a89274efb9b
 Title: Black Ferrari 488 GTB
 */
 
-import React, { useRef } from 'react'
+import React, {useMemo, useRef} from 'react'
 import {Decal, Dodecahedron, PerspectiveCamera, RenderTexture, useGLTF, Text,} from '@react-three/drei'
+import {applyProps} from "@react-three/fiber";
 
-export function Model(props) {
+export function Ferarri(props) {
   const { nodes, materials } = useGLTF('/black_ferrari_488_gtb.glb')
+  useMemo(()=>{
+    Object.values(nodes).forEach((node) => node.isMesh && (node.receiveShadow = node.castShadow = true))
+    applyProps(materials.Material, {color: "gray", envMapIntensity: 4, roughness: 0.5, metalness: 1 })
+  })
   return (
     <group {...props} dispose={null}>
-      <group position={[0.08, 0.18, -0.06]} rotation={[-Math.PI / 2, 0, -0.48]} scale={1.48}>
+      <group position={[0, 0, -0.06]} rotation={[-Math.PI / 2, 0, -0.48]} scale={1.48}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <group position={[0.17, 0, -0.13]} rotation={[0, 0, -Math.PI / 2]}>
             <mesh geometry={nodes.Object_4.geometry} material={materials.disc_plate} />
@@ -24,8 +29,8 @@ export function Model(props) {
             <mesh geometry={nodes.Object_8.geometry} material={materials.disc} />
             <mesh geometry={nodes.Object_9.geometry} material={materials.disc} />
             <mesh geometry={nodes.Object_10.geometry} material={materials.Tire} />
-            <mesh geometry={nodes.Object_11.geometry} material={materials.Tire} />
-            <mesh geometry={nodes.Object_12.geometry} material={materials.Tire} />
+            <mesh geometry={nodes.Object_11.geometry} material={materials.Tire}  />
+            <mesh geometry={nodes.Object_12.geometry} material={materials.Tire}  />
             <mesh geometry={nodes.Object_13.geometry} material={materials.Tire} />
             <mesh geometry={nodes.Object_14.geometry} material={materials.Tire} />
             <mesh geometry={nodes.Object_15.geometry} material={materials.Tire} />
@@ -48,29 +53,50 @@ export function Model(props) {
             <mesh geometry={nodes.Object_32.geometry} material={materials.Tire} />
           </group>
           <group position={[0.17, 0, -0.13]}>
-            <mesh geometry={nodes.Object_34.geometry} material={materials['Material.003']} />
-            <mesh geometry={nodes.Object_35.geometry} material={materials['Material.004']} />
+            <mesh geometry={nodes.Object_34.geometry} material={materials['Material.003']}  />
+            <mesh geometry={nodes.Object_35.geometry} material={materials['Material.004']}  />
           </group>
           <group position={[0.17, 0, -0.13]}>
-            <mesh geometry={nodes.Object_41.geometry} material={materials.Material} />
-            <mesh geometry={nodes.Object_42.geometry} material={materials.Material} />
-            <mesh geometry={nodes.Object_43.geometry} material={materials.Material} />
-            <mesh geometry={nodes.Object_44.geometry} material={materials.Material}>
-              <Decal position={[0, 1.2, 0.75]} rotation={0.3} scale={[3, 3, 3]}>
-                <meshStandardMaterial roughness={0.6} transparent polygonOffset polygonOffsetFactor={-10}>
+            <mesh geometry={nodes.Object_41.geometry} material={materials.Material}  >
+              <Decal position={[1.4, 0.8, 0.3]} rotation={-0.3} scale={[0.5, 0.2, 2]}>
+                <meshStandardMaterial roughness={0.9} transparent polygonOffset polygonOffsetFactor={-10}>
                   <RenderTexture attach="map" anisotropy={16}>
                     {/*мб убрать данную строчку?*/}
-                    <PerspectiveCamera makeDefault manual aspect={0.9 / 0.25} position={[0, 0, 5]} />
+                    <PerspectiveCamera makeDefault manual aspect={0.9 / 0.25} position={[0, 0, 6]} />
+                    {/*красный фон*/}
                     <color attach="background" args={['#af2040']} />
                     <ambientLight intensity={0.5} />
                     <directionalLight position={[10, 10, 5]} />
                     <Text rotation={[0, Math.PI, 0]}  fontSize={4} color="white">
-                      hello from drei
+                      hip wrap
                     </Text>
-                    <Dodecahedron />
+                    {/*<Dodecahedron />*/}
                   </RenderTexture>
                 </meshStandardMaterial>
               </Decal>
+            </mesh>
+            <mesh geometry={nodes.Object_42.geometry} material={materials.Material}/>
+            <mesh geometry={nodes.Object_43.geometry} material={materials.Material} />
+            <mesh geometry={nodes.Object_44.geometry} material={materials.Material} >
+              <Decal position={[-1, 0.75, 0.8]} rotation={0.6} scale={[0.5, 0.2, 2]}>
+                <meshStandardMaterial roughness={0.9} transparent polygonOffset polygonOffsetFactor={-10}>
+                  <RenderTexture attach="map" anisotropy={16}>
+                    {/*мб убрать данную строчку?*/}
+                    <PerspectiveCamera makeDefault manual aspect={0.9 / 0.25} position={[0, 0, 6]} />
+                    {/*красный фон*/}
+                    <color attach="background" args={['#af2040']} />
+                    <ambientLight intensity={0.5} />
+                    <directionalLight position={[10, 10, 5]} />
+                    <Text rotation={[0, Math.PI, 0]}  fontSize={2} color="white">
+                      hip wrap
+                    </Text>
+                    {/*точка хз зачем) */}
+                    {/*<Dodecahedron />*/}
+                  </RenderTexture>
+                </meshStandardMaterial>
+              </Decal>
+              {/*[ , высота, */}
+
             </mesh>
             <mesh geometry={nodes.Object_45.geometry} material={materials.Material} />
             <mesh geometry={nodes.Object_46.geometry} material={materials.LED_Blue} />

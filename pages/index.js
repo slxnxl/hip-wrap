@@ -1,6 +1,6 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
 import Grids from "../components/grids";
 import FilterButton from "../components/filterButton";
 import React, {Suspense} from "react";
@@ -24,10 +24,11 @@ export default function Home() {
       <main>
         {/*  TODO место под 3d тачку*/}
           <Box w='100%' h='50vh'> <Suspense fallback={null}>
-              <CarThree></CarThree>
+              {/*<CarThree></CarThree>*/}
               {/*<Car/>*/}
           </Suspense></Box>
         <FilterButton setTarget={setTarget}></FilterButton>
+        {/*  TODO сюда запихнуть сетку*/}
         <Grids target={target}></Grids>
       </main>
         <Footer/>
@@ -41,6 +42,5 @@ export default function Home() {
         </a>
       </footer>
     </div>
-
   )
 }

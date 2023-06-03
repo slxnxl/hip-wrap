@@ -13,22 +13,23 @@ import {
 } from '@react-three/drei'
 import { LayerMaterial, Color, Depth } from 'lamina'
 import {MeshPhongMaterial, TextureLoader} from "three";
-import {Model} from "../public/Black_ferrari_488_gtb";
+import {Ferarri } from "../public/Black_ferrari_488_gtb";
+import {Porshe} from "../public/911-transformed";
 
 // TODO можно настроить камеры как в исходном решении
 
 export function CarThree  () {
-
+    // TODO    проработать положение и тени на машинах
     return (
-    <Canvas shadows dpr={[1, 2]} camera={{ position: [-10, 0, 15], fov: 30 }}>
+    <Canvas shadows dpr={[1, 2]} camera={{ position: [0, -5, 1], fov: 10 }}>
         {/*<Porsche scale={1.6} position={[0, -0.20, 0]} rotation={[0, Math.PI / 5, 0]} />*/}
-        <Model scale={1.6} position={[0, -1.6, 0]} rotation={[0, Math.PI / 5, 0]} />
-        {/*<Ferrari scale={1.6} position={[0, -0.20, 0]} rotation={[0, Math.PI / 5, 0]} />*/}
+        <Ferarri scale={1.6} position={[0, -1.6, 0]} rotation={[0, Math.PI / 5, 0]} />
+        {/*<Porshe scale={1.6} position={[0, -1.6, 0]} rotation={[0, Math.PI / 5, 0]} />*/}
         {/*<CreateLogoInCar/>*/}
         <spotLight position={[0, 15, 0]} angle={0.3} penumbra={1} castShadow intensity={2} shadow-bias={-0.0001} />
         <ambientLight intensity={0.2} />
         <ContactShadows resolution={1024} frames={1} position={[0, -1.16, 0]} scale={10} blur={3} opacity={1} far={10} />
-
+    
         {/* Renders contents "live" into a HDRI environment (scene.environment). */}
         <Environment frames={Infinity} resolution={256}>
             {/* Ceiling */}
@@ -43,7 +44,7 @@ export function CarThree  () {
                 <Lightformer form="ring" color="red" intensity={1} scale={10} position={[-15, 4, -18]} target={[0, 0, 0]} />
             </Float>
             {/* Background */}
-            <mesh scale={300}>
+            <mesh scale={100}>
                 <sphereGeometry args={[2, 64, 64]} />
                 <LayerMaterial side={THREE.BackSide}>
                     <Color color="#444" alpha={1} mode="normal" />
@@ -60,16 +61,6 @@ export function CarThree  () {
     </Canvas>
 )}
 
-// try to get new modele car
-function Ferrari(props) {
-    const { nodes, materials } = useGLTF('/black_ferrari_488_gtb.glb')
-    console.log("node ferrari: ", nodes)
-    return (
-        <group {...props} dispose={null}>
-            <mesh castShadow receiveShadow geometry={nodes.Circle002_1.geometry} material={materials.alloy} />
-        </group>
-    )
-}
 function Porsche(props) {
     const { scene, nodes, materials } = useGLTF('/911-transformed.glb')
     // const pmndrs = useTexture('/logo.svg')
@@ -124,15 +115,8 @@ function Porsche(props) {
     }, [nodes, materials])
 
 
-    return (
-        <primitive object={scene} {...props}>
-        {/*/!*<mesh castShadow receiveShadow geometry={nodes.bunny.geometry} {...props} dispose={null}>*!/*/}
-        {/*    <mesh castShadow receiveShadow geometry={scene.children[1]} dispose={null}>*/}
-        {/*        <Decal debug={true} position={[0, 0, 0]} rotation={0} scale={2} map={pmndrs} />*/}
-        {/*</mesh>*/}
+    return<primitive object={scene} {...props}></primitive>
 
-    </primitive>
-    )
 }
 
 // TODO https://casesandberg.github.io/react-color/#create для задания сolor
@@ -145,14 +129,6 @@ function CameraRig({ v = new THREE.Vector3() }) {
         state.camera.lookAt(0, -0.5, 0)
     })
 }
-
-// https://stackoverflow.com/questions/66624762/threejs-decal-not-showing для решения проблемы
-// https://stackoverflow.com/questions/68689436/add-dynamic-texture-to-model-using-three-js-and-react-three-fiber-and-gltfjsx
-// https://stackoverflow.com/questions/71589738/how-do-i-properly-use-drei-usegltf
-// function CreateLogoInCar() {
-//
-//     return( )
-// }
 
 function MovingSpots({ positions = [2, 0, 2, 0, 2, 0, 2, 0] }) {
     const group = useRef()
