@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import "../styles/component.scss"
 // pages/_app.js
 import {Box, ChakraProvider, Heading} from '@chakra-ui/react'
 import { extendTheme } from '@chakra-ui/react'
