@@ -1,10 +1,29 @@
 import { Box, Center, Container, Flex, Stack, Tab, TabList, Tabs } from "@chakra-ui/react";
 import React from "react";
+import {pb} from "../utils/store"
+import {useEffect} from "react";
+import PocketBase from 'pocketbase';
+
 
 export default function FilterButton(props) {
+  useEffect( () => {
+    async function fetchData() {
+      try {const records = await pb?.collection('services').getFullList({
+        sort: '-created',
+      });
+      console.log('records : ', records);}
+      catch {
+        console.log(err);
+      }
+  }
+  fetchData();
+}, []);
 
   const setTarget = props.setTarget;
-
+  // const tabs = records.forEach(element => {
+    
+  // });
+ 
   return (
     <Container maxW='1000'>
       <Center mb={3}>

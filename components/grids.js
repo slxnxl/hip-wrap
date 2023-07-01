@@ -2,6 +2,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import GridComponent from "../components/grid-project/index"
+import pb from "../utils/store"
 
 export default function Grids() {
   const [photos, setPhotos] = useState([])
@@ -12,6 +13,7 @@ export default function Grids() {
 
   useEffect(() => {
         if (fetching) {
+
             axios.get(`https://jsonplaceholder.typicode.com/photos?_limit=10&_page=${currentPage}`)
                 .then(response => {
                     setPhotos([...photos, ...response.data])
@@ -22,7 +24,6 @@ export default function Grids() {
                 })
                 .finally(() => setFetching(false))
         }
-
     }, [fetching])
 
   useEffect(() => {

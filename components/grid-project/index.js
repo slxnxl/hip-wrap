@@ -57,7 +57,7 @@ export default function GridComponent({array}) {
         bar.push(updatedArray)
 
         updatedArray.map((photo, index) => {
-
+            
             const item = <div className='cell' key={index}>{index} {photo.id}</div>
 
             if (index < 11) {
