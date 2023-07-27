@@ -2,7 +2,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import GridComponent from "../components/grid-project/index"
-import pb from "../utils/store"
+import pb from "../utils/pb"
 
 export default function Grids() {
   const [photos, setPhotos] = useState([])

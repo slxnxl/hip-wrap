@@ -1,18 +1,22 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
 import Grids from "../components/grids";
 import FilterButton from "../components/filterButton";
-import React, {Suspense} from "react";
-import {CarThree} from "../components/threeDCar";
-import {Box} from "@chakra-ui/react";
+import React, { Suspense } from "react";
+import { CarThree } from "../components/threeDCar";
+import { Box } from "@chakra-ui/react";
 import Footer from "../components/footer";
 import Car from "../components/newCar";
+import { pb } from "../utils/pb";
 
-export default function Home() {
-
+export default function Home(props) {
   const [target, setTarget] = React.useState(0);
   console.log("target ", target);
+  const filterBtnProps = {
+    targetSet:{setTarget},
+    data:props.posts.data
+  }
 
   return (
     <div className={styles.container}>
@@ -22,16 +26,18 @@ export default function Home() {
         <link rel="icon" href="public/favicon.ico" />
       </Head>
       <main>
-        {/*  TODO место под 3d тачку*/}
-          <Box w='100%' h='50vh'> <Suspense fallback={null}>
-              <CarThree></CarThree>
-              {/*<Car/>*/}
-          </Suspense></Box>
-        <FilterButton setTarget={setTarget}></FilterButton>
+        <Box w="100%" h="50vh">
+          {/* {" "} */}
+          <Suspense fallback={null}>
+            <CarThree></CarThree>
+            {/*<Car/>*/}
+          </Suspense>
+        </Box>
+        <FilterButton props={...filterBtnProps}></FilterButton>
         {/*  TODO сюда запихнуть сетку*/}
         <Grids target={target}></Grids>
       </main>
-        <Footer/>
+      <Footer />
       <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
@@ -42,5 +48,28 @@ export default function Home() {
         </a>
       </footer>
     </div>
-  )
+  );
+}
+
+// запрос данных категорий для фильтра
+export async function getStaticProps() {
+  try {
+    const getRecords = await pb?.collection("services").getFullList({
+      sort: "-created",
+    });
+    getRecords.forEach((record) => console.log("1123: ", record));
+    console.log("getRecords:", ...getRecords);
+    // const data1 = JSON.stringify(getRecords);
+    const data = JSON.parse(JSON.stringify(getRecords))
+    console.log("data: ", data);
+    // console.log("getRecords", ...getRecords);
+    return {
+      props: {
+        posts: { data },
+      }, // will be passed to the page component as props
+    };
+  } catch (err) {
+    console.log("err: ", err);
+    return err;
+  }
 }

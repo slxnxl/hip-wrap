@@ -1,28 +1,44 @@
 import { Box, Center, Container, Flex, Stack, Tab, TabList, Tabs } from "@chakra-ui/react";
-import React from "react";
-import {pb} from "../utils/store"
+import React, { useState } from "react";
 import {useEffect} from "react";
-import PocketBase from 'pocketbase';
 
 
-export default function FilterButton(props) {
-  useEffect( () => {
-    async function fetchData() {
-      try {const records = await pb?.collection('services').getFullList({
-        sort: '-created',
-      });
-      console.log('records : ', records);}
-      catch {
-        console.log(err);
-      }
-  }
-  fetchData();
-}, []);
+// export async function getStaticProps() {
+//   // Получаем данные с внешнего API
+//   // Можно использовать любую библиотеку для получения данных.
+//   try { const getRecords = await pb?.collection('services').getFullList({
+//             sort: '-created',
+//           })
+//           console.log('records : ', getRecords)
+//           const posts = await getRecords.json()
+//           return {
+//             props: {
+//               posts,
+//             },
+//           }}
+//           catch {
+//             console.log("error filter btn data rec: ",err)
+//           }
+//   // Эта функция возвращает объект c объектом props.
+//   // который в свою очередь будет передан в компонент Blog(код которого описан выше)
 
-  const setTarget = props.setTarget;
-  // const tabs = records.forEach(element => {
-    
-  // });
+// }
+
+// TODO настроить загрузку данных с бд
+export default function FilterButton(...props) {
+
+// TODO переделать таргет на id с бд
+  const setTarget = props.targetSet;
+  console.log("в компоненте FilterButton : ",props)
+  console.log("data filter data: ", props.data)
+  // console.log("posts2: ", getRecords)
+  // const tabs = () => {props.data.map((element) => {
+  //   // console.log("t: ", element.name)
+  //   element.name
+  //   // <Tab _selected={{ color: 'white', bg: 'black' }}>{element.name}</Tab>
+  // })} 
+
+  // console.log("tabs: ", tabs())
  
   return (
     <Container maxW='1000'>
@@ -30,16 +46,12 @@ export default function FilterButton(props) {
         <Tabs variant='unstyled' colorScheme='blackAlpha' onChange={(index) => setTarget(index)}>
           <TabList>
             <Flex wrap="wrap">
-              <Tab _selected={{ color: 'white', bg: 'black' }}>все</Tab>
+              {/* {tabs} */}
+              {/* {/* <Tab _selected={{ color: 'white', bg: 'black' }}>все</Tab> */}
               <Tab _selected={{ color: 'white', bg: 'black' }}>пленка</Tab>
               <Tab _selected={{ color: 'white', bg: 'black' }}>детейлинг</Tab>
               <Tab _selected={{ color: 'white', bg: 'black' }}>ремонт</Tab>
               <Tab _selected={{ color: 'white', bg: 'black' }}>оборудование</Tab>
-              {/*<Tab _selected={{ color: 'white', bg: 'black' }}>химчистка</Tab>*/}
-              {/*<Tab _selected={{ color: 'white', bg: 'black' }}>винил</Tab>*/}
-              {/*<Tab _selected={{ color: 'white', bg: 'black' }}>полировка</Tab>*/}
-              {/*<Tab _selected={{ color: 'white', bg: 'black' }}>керамика</Tab>*/}
-              {/*<Tab _selected={{ color: 'white', bg: 'black' }}>химчистка</Tab>*/}
             </Flex>
           </TabList>
         </Tabs>
@@ -47,29 +59,3 @@ export default function FilterButton(props) {
     </Container>
   )
 }
-
-// Список категорий
-//(Пленка)
-// Антигравийная защита
-// Винил
-// Дизайн
-// Брендирование
-// Тонировка
-// Бронирование стекол
-// (Детейлинг)
-// Полировка
-// Керамика
-// Химчистка
-// Восстановление кожи
-// (Ремонт)
-// Выпрямление вмятин (пдр)
-// Покрас
-// Ремонт стекол
-// Перешив салона
-// (Доп оборудование)
-// Подсветка
-// Выхлопная система
-// Доводчики/пороги
-// Шумоизоляция
-// Аудиосистема
-// Замена аксессуаров
