@@ -13,10 +13,7 @@ import { pb } from "../utils/pb";
 export default function Home(props) {
   const [target, setTarget] = React.useState(0);
   console.log("target ", target);
-  const filterBtnProps = {
-    targetSet:{setTarget},
-    data:props.posts.data
-  }
+
 
   return (
     <div className={styles.container}>
@@ -33,7 +30,7 @@ export default function Home(props) {
             {/*<Car/>*/}
           </Suspense>
         </Box>
-        <FilterButton props={...filterBtnProps}></FilterButton>
+        <FilterButton func={setTarget} data={props.posts.data}></FilterButton>
         {/*  TODO сюда запихнуть сетку*/}
         <Grids target={target}></Grids>
       </main>

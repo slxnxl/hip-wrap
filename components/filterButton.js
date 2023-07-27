@@ -25,18 +25,18 @@ import {useEffect} from "react";
 // }
 
 // TODO настроить загрузку данных с бд
-export default function FilterButton(...props) {
+export default function FilterButton({func, data}) {
 
 // TODO переделать таргет на id с бд
-  const setTarget = props.targetSet;
-  console.log("в компоненте FilterButton : ",props)
-  console.log("data filter data: ", props.data)
+  const setTarget = func;
+  console.log("в компоненте FilterButton : ",func)
+  console.log("data filter data: ", data)
   // console.log("posts2: ", getRecords)
-  // const tabs = () => {props.data.map((element) => {
+  const tabs = data.map((element) => {
   //   // console.log("t: ", element.name)
-  //   element.name
-  //   // <Tab _selected={{ color: 'white', bg: 'black' }}>{element.name}</Tab>
-  // })} 
+    // element.name
+    return <Tab _selected={{ color: 'white', bg: 'black' }}>{element.name}</Tab>
+  })
 
   // console.log("tabs: ", tabs())
  
@@ -46,7 +46,7 @@ export default function FilterButton(...props) {
         <Tabs variant='unstyled' colorScheme='blackAlpha' onChange={(index) => setTarget(index)}>
           <TabList>
             <Flex wrap="wrap">
-              {/* {tabs} */}
+              {tabs}
               {/* {/* <Tab _selected={{ color: 'white', bg: 'black' }}>все</Tab> */}
               <Tab _selected={{ color: 'white', bg: 'black' }}>пленка</Tab>
               <Tab _selected={{ color: 'white', bg: 'black' }}>детейлинг</Tab>
