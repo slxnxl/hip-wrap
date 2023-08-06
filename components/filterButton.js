@@ -29,13 +29,11 @@ export default function FilterButton({func, data}) {
 
 // TODO переделать таргет на id с бд
   const setTarget = func;
-  console.log("в компоненте FilterButton : ",func)
-  console.log("data filter data: ", data)
-  // console.log("posts2: ", getRecords)
+  // console.log("в компоненте FilterButton : ",func)
+  // console.log("data filter data: ", data)
+
   const tabs = data.map((element) => {
-  //   // console.log("t: ", element.name)
-    // element.name
-    return <Tab _selected={{ color: 'white', bg: 'black' }}>{element.name}</Tab>
+    return <Tab _selected={{ color: 'white', bg: 'black' }} key={element.id}>{element.name}</Tab> 
   })
 
   // console.log("tabs: ", tabs())
@@ -48,10 +46,10 @@ export default function FilterButton({func, data}) {
             <Flex wrap="wrap">
               {tabs}
               {/* {/* <Tab _selected={{ color: 'white', bg: 'black' }}>все</Tab> */}
-              <Tab _selected={{ color: 'white', bg: 'black' }}>пленка</Tab>
+              {/* <Tab _selected={{ color: 'white', bg: 'black' }}>пленка</Tab>
               <Tab _selected={{ color: 'white', bg: 'black' }}>детейлинг</Tab>
               <Tab _selected={{ color: 'white', bg: 'black' }}>ремонт</Tab>
-              <Tab _selected={{ color: 'white', bg: 'black' }}>оборудование</Tab>
+              <Tab _selected={{ color: 'white', bg: 'black' }}>оборудование</Tab> */}
             </Flex>
           </TabList>
         </Tabs>

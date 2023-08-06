@@ -15,6 +15,7 @@
   grid-template-rows: 40% 20% 40%;
   margin-bottom: 8px;
 
+
   @media (max-width: 640px) {
     grid-template-rows: auto;
     max-width: 100%;
