@@ -10,10 +10,9 @@ export default function Grids() {
   const [fetching, setFetching] = useState(true)
   const [totalCount, setTotalCount] = useState(0)
 
-
+// запрос данных для сетки
   useEffect(() => {
         if (fetching) {
-
             axios.get(`https://jsonplaceholder.typicode.com/photos?_limit=10&_page=${currentPage}`)
                 .then(response => {
                     setPhotos([...photos, ...response.data])
@@ -22,6 +21,7 @@ export default function Grids() {
                     setTotalCount(response.headers['x-total-count'])
                     //setTotalCount(33)
                 })
+                .catch((e) => console.log("error fetching data for grid: ", e))
                 .finally(() => setFetching(false))
         }
     }, [fetching])
@@ -43,7 +43,7 @@ export default function Grids() {
         }
     }
 
-  console.log(photos)
+  console.log("photos: ",photos)
 
   return (
     <div> <GridComponent array={[...photos]}/></div>

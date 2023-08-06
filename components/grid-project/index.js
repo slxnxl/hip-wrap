@@ -45,12 +45,13 @@ export default function GridComponent({array}) {
     let second = [];
     let third = [];
 
+    // массив массивов для каждого объекта сетки
     let bar = []
 
     for (let currentPage = 0; currentPage < array.length / 10 ; currentPage++) {
-        console.log(array.length)
+        console.log("длина массива ", array.length)
 
-        console.log(currentPage)
+        console.log("текущая страница: ",currentPage)
 
         const updatedArray = array.slice([currentPage * 10], [(currentPage * 10) + 10]).map(item => item);
 
@@ -96,7 +97,7 @@ export default function GridComponent({array}) {
 
     }
 
-    console.log(bar)
+    console.log("bar: ", bar)
 
 
 /*

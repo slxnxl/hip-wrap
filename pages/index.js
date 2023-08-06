@@ -24,14 +24,12 @@ export default function Home(props) {
       </Head>
       <main>
         <Box w="100%" h="50vh">
-          {/* {" "} */}
           <Suspense fallback={null}>
-            <CarThree></CarThree>
+            {/* <CarThree></CarThree> */}
             {/*<Car/>*/}
           </Suspense>
         </Box>
         <FilterButton func={setTarget} data={props.posts.data}></FilterButton>
-        {/*  TODO сюда запихнуть сетку*/}
         <Grids target={target}></Grids>
       </main>
       <Footer />
@@ -54,11 +52,11 @@ export async function getStaticProps() {
     const getRecords = await pb?.collection("services").getFullList({
       sort: "-created",
     });
-    getRecords.forEach((record) => console.log("1123: ", record));
-    console.log("getRecords:", ...getRecords);
+    // getRecords.forEach((record) => console.log("1123: ", record));
+    // console.log("getRecords:", ...getRecords);
     // const data1 = JSON.stringify(getRecords);
     const data = JSON.parse(JSON.stringify(getRecords))
-    console.log("data: ", data);
+    // console.log("data: ", data);
     // console.log("getRecords", ...getRecords);
     return {
       props: {
