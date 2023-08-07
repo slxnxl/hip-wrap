@@ -6,8 +6,6 @@
   box-sizing: border-box;
 }
 .net {
-  display: grid;
-  gap: 8px;
   max-width: calc(100% - 16px);
   width: 100%;
   aspect-ratio: 708/733;
@@ -22,7 +20,10 @@
     margin-bottom: 24px;
   }
 }
-
+  @media (min-width: 640px) {
+    display: grid;
+    gap: 8px;
+  }
   @media (max-width: 640px) {
     display: flex;
     flex-direction: column;
@@ -39,7 +40,7 @@
     }
   }
 
-  &_first {
+  &_first { 
     display: grid;
     grid-template-columns: 42% 29% 29%;
     /*grid-template-rows: 50% 20% 50%;*/

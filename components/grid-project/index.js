@@ -29,6 +29,7 @@ export default function GridComponent({array}) {
         if (cells.length > 0) {
             for (let item of cells) {
                 if (isMobile) {
+                    // возможно убрать этот блок
                     item.style['height'] = screenSize.dynamicWidth - containerPadding + 'px'
                 } else item.style['height'] = 'auto'
             }

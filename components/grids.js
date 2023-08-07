@@ -10,6 +10,7 @@ export default function Grids() {
   const [fetching, setFetching] = useState(true)
   const [totalCount, setTotalCount] = useState(0)
 
+  // https://www.npmjs.com/package/react-breakpoints
 // запрос данных для сетки
   useEffect(() => {
         if (fetching) {
