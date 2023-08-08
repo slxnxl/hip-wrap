@@ -1,100 +1,75 @@
 .container{
   max-width: 1440px;
   width: 100%;
-  padding: 98px 20px;
+  padding: 0 20px;
   margin: 0 auto;
   box-sizing: border-box;
 }
-.net {
-  max-width: calc(100% - 16px);
-  width: 100%;
-  aspect-ratio: 708/733;
-  height: 100%;
-  grid-template-rows: 40% 20% 40%;
-  margin-bottom: 8px;
+.cell {
+  background: url("../public/catt.jpeg") no-repeat;
+  background-size: cover;
 
+  &:first-child {
+    margin-bottom: 8px;
+  }
 
-  @media (min-width: 640px) {
-   /* Safari only override */
-  @supports (-webkit-appearance:none) {
-    margin-bottom: 24px;
+  @media (max-width: 640px) {
+    width: 100%;
+    aspect-ratio: 1/1;
+    margin-bottom: 8px;
   }
 }
-  @media (min-width: 640px) {
-    display: grid;
-    gap: 8px;
-  }
-  @media (max-width: 640px) {
+
+.net {
     display: flex;
     flex-direction: column;
     aspect-ratio: 1;
     max-width: 100%;
+
+  @media (min-width: 640px) {
+    display: grid;
+    max-width: calc(100% - 16px);
+    width: 100%;
+    aspect-ratio: 708/733;
+    height: 100%;
+    grid-template-rows: 40% 20% 40%;
   }
 
   & div {
-    gap: 8px;
-    box-sizing: border-box;
-
-    @media (max-width: 640px) {
-      grid-template-columns: 100%
+    @media (min-width: 640px) {
+      column-gap: 8px;
+      box-sizing: border-box;
     }
   }
 
   &_first { 
-    display: grid;
-    grid-template-columns: 42% 29% 29%;
-    /*grid-template-rows: 50% 20% 50%;*/
-    & div {
-      //background: antiquewhite;
-      background: url("../public/catt.jpeg") no-repeat;
-      background-size: cover;
-
-      @media (max-width: 640px) {
-        width: 100%;
-        aspect-ratio: 1/1;
-      }
+    @media (min-width: 640px) {
+      display: grid;
+      grid-template-columns: 42% 29% 29%;
+    }
+    & > * + * {
+      margin-bottom: 8px;
     }
   }
 
   &_second {
-    display: grid;
-    grid-template-columns: calc(42%/2 - 8px) calc(42%/2) 29% 29%;
-    /*grid-template-rows: 50% 20% 50%;*/
-    & div {
-     // background: antiquewhite;
-      background: url("../public/catt.jpeg") no-repeat;
-      background-size: cover;
-
-      @media (max-width: 640px) {
-        width: 100%;
-        aspect-ratio: 1/1;
-      }
+    @media (min-width: 640px) {
+      display: grid;
+      grid-template-columns: calc(42%/2 - 8px) calc(42%/2) 29% 29%;
+    }
+    & > * + * {
+      margin-bottom: 8px;
     }
   }
 
   &_third {
-    display: grid;
-    grid-template-columns: 29% 29% 42%;
-    & div {
-      //background: antiquewhite;
-      background: url("../public/catt.jpeg") no-repeat;
-      background-size: cover;
-
-      @media (max-width: 640px) {
-        width: 100%;
-        aspect-ratio: 1/1;
-      }
+    @media (min-width: 640px) {
+      display: grid;
+      grid-template-columns: 29% 29% 42%;
     }
-    /*grid-template-rows: 50% 20% 50%;*/
+    & > * + * {
+      margin-bottom: 8px;
+    }
   }
 
-
-  /*grid-template-areas:
-"A A A A   A A A A   A A A A"
-"B B B B   B B B B   B B C C"
-"B B B B   B B B B   B B C C";*/
-}
-
-.cell {
-  //height: 24px;
 }

@@ -1,53 +1,20 @@
-// import "../../styles/component.scss"
 import useMediaQuery from "../../utils/useMediaQuery"
 import {useEffect, useState} from "react";
 
 export default function GridComponent({array}) {
 
-    //const [nett, setNet] = useState([])
-
-    let index = 0
-
-    const containerPadding = 40;
-
     const isMobile = useMediaQuery('(max-width: 640px)')
 
-    const [screenSize, getDimension] = useState({
-        dynamicWidth: typeof window !== "undefined" && window?.innerWidth,
-        dynamicHeight: typeof window !== "undefined" && window?.innerHeight
-    });
-    const setDimension = () => {
-        getDimension({
-            dynamicWidth: typeof window !== "undefined" && window?.innerWidth,
-            dynamicHeight: typeof window !== "undefined" && window?.innerHeight
-        })
-    }
-
-    useEffect(() => {
-        window?.addEventListener('resize', setDimension);
-        const cells = document.getElementsByClassName('cell');
-        if (cells.length > 0) {
-            for (let item of cells) {
-                if (isMobile) {
-                    // возможно убрать этот блок
-                    item.style['height'] = screenSize.dynamicWidth - containerPadding + 'px'
-                } else item.style['height'] = 'auto'
-            }
-        }
-
-        return (() => {
-            window.removeEventListener('resize', setDimension);
-        })
-    }, [screenSize])
-
-
+    //массив с 3мя рядами сетки
     let net = [];
+    //1 ряд
     let first = [];
+    //2й ряд
     let second = [];
+    //3й ряд
     let third = [];
 
-    // массив массивов для каждого объекта сетки
-    let bar = []
+    // берем по 10 элементов из передаваемого массива и добавляем их в сетку, разделяя на 3 ряд/блока (по 3/4/3 элемента)
 
     for (let currentPage = 0; currentPage < array.length / 10 ; currentPage++) {
         console.log("длина массива ", array.length)
@@ -55,8 +22,6 @@ export default function GridComponent({array}) {
         console.log("текущая страница: ",currentPage)
 
         const updatedArray = array.slice([currentPage * 10], [(currentPage * 10) + 10]).map(item => item);
-
-        bar.push(updatedArray)
 
         updatedArray.map((photo, index) => {
             
@@ -91,81 +56,21 @@ export default function GridComponent({array}) {
 
         net = [...net, foo]
 
-
         first = [];
         second = [];
         third = [];
 
     }
 
-    console.log("bar: ", bar)
-
-
-/*
-
-    array.map(photo => {
-
-        const item = <div className='cell'>{index} {photo.id}</div>
-
-        if (index < 11) {
-            if (index < 3) {
-                first.push(item);
-            }
-            if (index > 2 && index < 7) {
-                second.push(item);
-            }
-
-            if (index > 6) {
-                third.push(item);
-            }
-        }
-
-        net.push(
-            <div className="net" key={array.length / 10}>
-                <div className="net_first">
-                    {first}
-                </div>
-                <div className="net_second">
-                    {second}
-                </div>
-                <div className="net_third">
-                    {third}
-                </div>
-
-            </div>
-        )
-
-        index++
-
-        if (index >= 10) {
-            index = 0
-            first = [];
-            second = [];
-            third = [];
-        }
-
-    })
-
-
-    net.push(
-        <div className="net">
-            <div className="net_first">
-                {first}
-            </div>
-            <div className="net_second">
-                {second}
-            </div>
-            <div className="net_third">
-                {third}
-            </div>
-
-        </div>
-    )
-*/
-
     return (
-        <div id='container'>
+        isMobile
+        ?(<div className="container">
+            {array.map((photo, index)=>{
+            return <div className="cell" key={index}>{index}{photo.id}</div>
+            })}
+        </div>)
+        :(<div id='container' className="container">
             {net.map(item => item)}
-        </div>
+        </div>)
     );
 }
