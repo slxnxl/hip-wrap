@@ -2,8 +2,14 @@
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
+  async redirects() { return [{
+    source: "/api/files/:path*",
+    destination: "better-autumn.pockethost.io/api/files/:path*",
+    permanent: true,
+  }]
+  },
   images : {
-    domains: ['http://localhost:3000/']
+    domains: ['better-autumn.pockethost.io'],
   },
   compiler: {
     removeConsole: false,
