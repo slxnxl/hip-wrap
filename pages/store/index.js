@@ -5,10 +5,9 @@ export default function Store() {
 
     let arr = Array(10);
 
-
     return (
         <SimpleGrid columns={2} spacing={10}>
-            <CardStore></CardStore>
+            {/* <CardStore></CardStore> */}
             <Box bg='tomato' height='80px'></Box>
             <Box bg='tomato' height='80px'></Box>
             <Box bg='tomato' height='80px'></Box>

@@ -33,6 +33,7 @@ export default function Header() {
           <Link href="/"><Image src="/logo.svg" alt="logo" objectFit='cover' width="200px" height="80px"></Image></Link>
           <ButtonGroup gap='5'>
             <Button colorScheme='black' variant='link' className={"menu-button"}><Link href="/">главная</Link></Button>
+            <Button colorScheme='black' variant='link' className={"menu-button"}><Link href="/services">услуги</Link></Button>
             <Button colorScheme='black' variant='link' className={"menu-button"}><Link href="/store">магазин</Link></Button>
             <Button colorScheme='black' variant='link' className={"menu-button"}><Link href="/contact">контакты</Link></Button>
           </ButtonGroup>

@@ -41,7 +41,7 @@ export default function FilterButton({func, data}) {
   return (
     <Container maxW='1000'>
       <Center mb={3}>
-        <Tabs variant='unstyled' colorScheme='blackAlpha' onChange={(index) => setTarget(index)}>
+        <Tabs variant='unstyled' colorScheme='blackAlpha' onChange={(el) => setTarget(el.id)}>
           <TabList>
             <Flex wrap="wrap">
               {tabs}
