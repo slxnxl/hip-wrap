@@ -17,9 +17,6 @@ export default function GridComponent({array}) {
     // берем по 10 элементов из передаваемого массива и добавляем их в сетку, разделяя на 3 ряд/блока (по 3/4/3 элемента)
 
     for (let currentPage = 0; currentPage < array.length / 10 ; currentPage++) {
-        console.log("длина массива ", array.length)
-
-        console.log("текущая страница: ",currentPage)
 
         const updatedArray = array.slice([currentPage * 10], [(currentPage * 10) + 10]).map(item => item);
 
