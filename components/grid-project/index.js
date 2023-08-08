@@ -63,7 +63,7 @@ export default function GridComponent({array}) {
         isMobile
         ?(<div className="container">
             {array.map((photo, index)=>{
-            return <div className="cell" key={index}>{index}{photo.id}</div>
+            return <div className="cell" key={index}>{index}</div>
             })}
         </div>)
         :(<div id='container' className="container">

@@ -13,6 +13,7 @@ import { pb } from "../utils/pb";
 export default function Home(props) {
   const [target, setTarget] = React.useState(0);
   console.log("target ", target);
+  console.log("data index: ", props.posts.data[target].name);
 
 
   return (
@@ -30,7 +31,7 @@ export default function Home(props) {
           </Suspense>
         </Box>
         <FilterButton func={setTarget} data={props.posts.data}></FilterButton>
-        <Grids target={target}></Grids>
+        <Grids target={props.posts.data[target]}></Grids>
       </main>
       <Footer />
       <footer className={styles.footer}>
@@ -52,14 +53,12 @@ export async function getStaticProps() {
     const getRecords = await pb?.collection("services").getFullList({
       sort: "-created",
     });
-    // getRecords.forEach((record) => console.log("1123: ", record));
-    // console.log("getRecords:", ...getRecords);
-    // const data1 = JSON.stringify(getRecords);
+    // TODO по идее можно переделать без JSON
     const data = JSON.parse(JSON.stringify(getRecords))
-    // console.log("data: ", data);
-    // console.log("getRecords", ...getRecords);
+    data.unshift({ id: 0, name: "все" })
     return {
       props: {
+        // TODO упростить представление потом
         posts: { data },
       }, // will be passed to the page component as props
     };
