@@ -1,8 +1,9 @@
 import { Suspense, useEffect, useState } from "react";
 import GridComponent from "../components/grid-project/index";
 import { pb } from "../utils/pb";
+import { Skeleton } from "@chakra-ui/react";
 
-export default function Grids({ target }) {
+export default function Grids({ target, isRenderedPhoto }) {
   const [photos, setPhotos] = useState([]);
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -12,6 +13,10 @@ export default function Grids({ target }) {
   let test = [];
   // https://www.npmjs.com/package/react-breakpoints
   // запрос данных для сетки
+  useEffect(() => {
+    isRenderedPhoto(true)
+  }, [])
+
   useEffect(() => {
     if (fetching) {
       // если выбраны все посты
@@ -91,8 +96,7 @@ export default function Grids({ target }) {
   console.log("photos: ", photos);
 
   return (
-    <GridComponent array={[...photos]} />
-    
+<GridComponent  array={[...photos]} />
     // TODO add Suspense
   );
 }

@@ -34,7 +34,7 @@ export default function BlockGrid({ project }) {
       className="image_box"
       display={"flex"}
     >
-      <Skeleton isLoaded={load} fadeDuration={4} startColor='pink.500' endColor='orange.500'  height='100px'>
+      <Skeleton isLoaded={load}  startColor='pink.500' endColor='orange.500'  height='100px'>
         <Image
           layout="fill"
           onLoadingComplete={(e)=> setLoad(true)}

@@ -12,6 +12,7 @@ export default function GridComponent({array}) {
         return
     }
 
+
     //массив с 3мя рядами сетки
     let net = [];
     //1 ряд

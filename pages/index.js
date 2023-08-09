@@ -14,7 +14,7 @@ export default function Home(props) {
   const [target, setTarget] = React.useState(0);
   console.log("target ", target);
   console.log("data index: ", props.posts.data[target].name);
-
+  const [renderedPhoto, setRenderedPhoto] = React.useState(false);
 
   return (
     <div className={styles.container}>
@@ -30,9 +30,11 @@ export default function Home(props) {
             {/*<Car/>*/}
           </Suspense>
         </Box>
-        <Skeleton height='20px' />
+        <Skeleton height='20px' isLoaded={renderedPhoto} />
         <FilterButton func={setTarget} data={props.posts.data}></FilterButton>
-        <Grids target={props.posts.data[target]}></Grids>
+        {/* <Skeleton isLoaded={renderedPhoto} fadeDuration={4} startColor='pink.500' endColor='orange.500'  height='100px'> */}
+        <Grids isRenderedPhoto={setRenderedPhoto} target={props.posts.data[target]}></Grids>
+        {/* </Skeleton> */}
       </main>
       <Footer />
       <footer className={styles.footer}>
