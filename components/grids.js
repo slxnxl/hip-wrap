@@ -2,8 +2,9 @@ import { Suspense, useEffect, useState } from "react";
 import GridComponent from "../components/grid-project/index";
 import { pb } from "../utils/pb";
 import { Skeleton } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
 
-export default function Grids({ target, isRenderedPhoto }) {
+export default function Grids({ isRenderPhoto, target }) {
   const [photos, setPhotos] = useState([]);
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,9 +15,19 @@ export default function Grids({ target, isRenderedPhoto }) {
   // https://www.npmjs.com/package/react-breakpoints
   // запрос данных для сетки
   useEffect(() => {
-    isRenderedPhoto(true)
+    // костыль для лоудера
+    setTimeout(() => {
+      isRenderPhoto(true)
+    }, 3500)
+    
   }, [])
 
+  //   const SuspenseComponent = dynamic(
+  //   () => import("../components/grid-project/index"),
+  //   { loading: () => <Skeleton height='200px' />,
+  //     ssr: false,
+  //    }
+  // );
   useEffect(() => {
     if (fetching) {
       // если выбраны все посты
@@ -97,6 +108,7 @@ export default function Grids({ target, isRenderedPhoto }) {
 
   return (
 <GridComponent  array={[...photos]} />
+// <SuspenseComponent array={[...photos]}></SuspenseComponent> 
     // TODO add Suspense
   );
 }

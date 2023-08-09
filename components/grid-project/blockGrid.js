@@ -41,6 +41,7 @@ export default function BlockGrid({ project }) {
           objectFit="cover"
           quality={100}
           alt={project.name}
+          loading="lazy"
           src={`https://better-autumn.pockethost.io/api/files/${project.collectionId}/${project.id}/${project.main_image}`}
         ></Image>
       </Skeleton>
