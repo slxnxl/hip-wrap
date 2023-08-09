@@ -5,7 +5,7 @@ import Grids from "../components/grids";
 import FilterButton from "../components/filterButton";
 import React, { Suspense } from "react";
 import { CarThree } from "../components/threeDCar";
-import { Box } from "@chakra-ui/react";
+import { Box, Skeleton } from "@chakra-ui/react";
 import Footer from "../components/footer";
 import Car from "../components/newCar";
 import { pb } from "../utils/pb";
@@ -30,6 +30,7 @@ export default function Home(props) {
             {/*<Car/>*/}
           </Suspense>
         </Box>
+        <Skeleton height='20px' />
         <FilterButton func={setTarget} data={props.posts.data}></FilterButton>
         <Grids target={props.posts.data[target]}></Grids>
       </main>

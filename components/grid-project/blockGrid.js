@@ -1,12 +1,11 @@
-import { AspectRatio, Box, Text } from "@chakra-ui/react";
+'use client'
+import { AspectRatio, Box, Text, Skeleton } from "@chakra-ui/react";
 import Image from "next/image";
 import { Suspense, useState } from "react";
 
 export default function BlockGrid({ project }) {
   const [load, setLoad] = useState(false);
-  const handleChange = () => {
-    setLoad(!load);
-  };
+  console.log("load ", project.name, " ", load); 
   return project?.video === true ? (
     <Box
       as="video"
@@ -35,15 +34,16 @@ export default function BlockGrid({ project }) {
       className="image_box"
       display={"flex"}
     >
-      <Image
-        layout="fill"
-        onLoadingComplete={setLoad(true)}
-        objectFit="cover"
-        quality={100}
-        alt={project.name}
-        src={`https://better-autumn.pockethost.io/api/files/${project.collectionId}/${project.id}/${project.main_image}`}
-      ></Image>
-      {!load && <Loading />}
+      <Skeleton isLoaded={load} fadeDuration={4} startColor='pink.500' endColor='orange.500'  height='100px'>
+        <Image
+          layout="fill"
+          onLoadingComplete={(e)=> setLoad(true)}
+          objectFit="cover"
+          quality={100}
+          alt={project.name}
+          src={`https://better-autumn.pockethost.io/api/files/${project.collectionId}/${project.id}/${project.main_image}`}
+        ></Image>
+      </Skeleton>
     </Box>
   );
 }

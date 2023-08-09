@@ -2,8 +2,13 @@
     "plugins": ["react"],
     "compilerOptions": {
       "module": "ES6",
+      "moduleResolution": "node",
       "jsx": "preserve",
-      "checkJs": true
+      "checkJs": true,
+      "paths": {
+        "@modules/*": ["./node_modules/*"],
+        "*": ["./node_modules/*"]
+    },
     },
     "exclude": ["node_modules", "**/node_modules/*"]
   }
