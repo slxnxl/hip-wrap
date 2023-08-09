@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { Suspense, useEffect, useState } from "react";
 import GridComponent from "../components/grid-project/index";
 import { pb } from "../utils/pb";
 
@@ -93,6 +92,7 @@ export default function Grids({ target }) {
 
   return (
     <GridComponent array={[...photos]} />
+    
     // TODO add Suspense
   );
 }
