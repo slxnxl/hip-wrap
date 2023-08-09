@@ -15,6 +15,7 @@ export default function Grids({ isRenderPhoto, target }) {
   // https://www.npmjs.com/package/react-breakpoints
   // запрос данных для сетки
   useEffect(() => {
+    // мб прописать на то, чтобы все картинки были loaded
     // костыль для лоудера
     setTimeout(() => {
       isRenderPhoto(true)
@@ -79,6 +80,7 @@ export default function Grids({ isRenderPhoto, target }) {
 
   // сбрасываем посты и запрашивем новые если поменялся таргет фильтра
   useEffect(() => {
+    isRenderPhoto(false);
     setCurrentPage(1);
     setPhotos([]);
     setFetching(true);
