@@ -1,3 +1,4 @@
+'use client';
 import { Suspense, useEffect, useState } from "react";
 import GridComponent from "../components/grid-project/index";
 import { pb } from "../utils/pb";
@@ -10,18 +11,20 @@ export default function Grids({ isRenderPhoto, target }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [fetching, setFetching] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
-
+  const [countPhotoready, setCountPhotoready] = useState(0);
   let test = [];
   // https://www.npmjs.com/package/react-breakpoints
   // запрос данных для сетки
   useEffect(() => {
+    if (countPhotoready > 3 || countPhotoready < totalCount %10) { 
     // мб прописать на то, чтобы все картинки были loaded
     // костыль для лоудера
-    setTimeout(() => {
+    // setTimeout(() => {
+      console.log("timout ", countPhotoready, totalCount %10)
       isRenderPhoto(true)
-    }, 3500)
-    
-  }, [])
+    // }, 3500)
+    }
+  }, [countPhotoready])
 
   //   const SuspenseComponent = dynamic(
   //   () => import("../components/grid-project/index"),
@@ -80,6 +83,7 @@ export default function Grids({ isRenderPhoto, target }) {
 
   // сбрасываем посты и запрашивем новые если поменялся таргет фильтра
   useEffect(() => {
+    setCountPhotoready(0)
     isRenderPhoto(false);
     setCurrentPage(1);
     setPhotos([]);
@@ -109,7 +113,8 @@ export default function Grids({ isRenderPhoto, target }) {
   console.log("photos: ", photos);
 
   return (
-<GridComponent  array={[...photos]} />
+    // здесь запрос что первое фото сделано и можно отображать
+<GridComponent isFirstPhotoLoaded={setCountPhotoready} array={[...photos]} />
 // <SuspenseComponent array={[...photos]}></SuspenseComponent> 
     // TODO add Suspense
   );
