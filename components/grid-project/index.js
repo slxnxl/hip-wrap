@@ -67,7 +67,7 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
       {array.map((photo, index) => {
         return (
           <div className="cell" key={index}>
-            <BlockGrid project={photo}></BlockGrid>
+            <BlockGrid isPhotoLoaded={123} project={photo}></BlockGrid>
           </div>
         );
       })}

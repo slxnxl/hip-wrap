@@ -1,6 +1,7 @@
-import { Box, Flex, Text, Image } from "@chakra-ui/react";
+import { Box, Flex, Text, Image, Divider } from "@chakra-ui/react";
 import { FiArrowUpRight } from "react-icons/fi";
 import { FaLocationDot } from "react-icons/fa6";
+import { useRef, useState } from "react";
 export default function Footer({ adress }) {
   return (
     <Box bg="#171713" className="footer">
@@ -69,11 +70,16 @@ export default function Footer({ adress }) {
           <Text as="b">Челябинск</Text>
           <Text as="b">-</Text>
           <Box display="flex" flexDirection="row">
+            <FaLocationDot color="#3F3EC2" size="25px" className="location_icon"/>
             <Text as="b">показать на карте</Text>
           </Box>
+        </Box>
+        <Box display="flex" flexDirection="column>">
+        <Divider className="rotate" />
         </Box>
       </Flex>
     </Box>
   );
 }
-// Вопрос, мб лучше прокинуть стейт isMobile чем вызывать в каждом?
+
+// https://hanzochang.com/articles/12

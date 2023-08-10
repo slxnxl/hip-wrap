@@ -33,3 +33,8 @@ a {
 .rotate {
   transform:rotate(-2deg);
 }
+
+.location_icon {
+  margin-left: -5px;
+  margin-right: 5px;
+}

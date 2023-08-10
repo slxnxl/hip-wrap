@@ -22,6 +22,7 @@ import Image from 'next/image'
 import styles from "../styles/Home.module.css";
 // import '../styles/logo.css'
 
+// https://www.framer.com/motion/examples/
 export default function Header() {
   // const { isOpen, onOpen, onClose } = useDisclosure();
  return (

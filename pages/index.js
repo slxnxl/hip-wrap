@@ -12,15 +12,6 @@ export default function Home(props) {
   const [target, setTarget] = React.useState(0);
   console.log("target ", target);
   console.log("data index: ", props.posts.data[target].name);
-  const [renderedPhoto, setRenderedPhoto] = React.useState(false);
-  // для лоадера пока ждем загрузку
-  // https://nextjs.org/docs/pages/building-your-application/optimizing/lazy-loading
-  // const SuspenseComponent = dynamic(
-  //   () => import("../components/grids"),
-  //   { loading: () => <Skeleton height='200px' isLoaded={renderedPhoto} />,
-  //     ssr: false,
-  //    }
-  // );
 
   return (
     <div className={styles.container}>
@@ -39,9 +30,8 @@ export default function Home(props) {
 
         <FilterButton func={setTarget} data={props.posts.data}></FilterButton>
         {/* <Skeleton isLoaded={renderedPhoto} fadeDuration={4} startColor='pink.500' endColor='orange.500'  height='100px'> */}
-        {!renderedPhoto && <LoaderElement />}
+        {/* {!renderedPhoto && <LoaderElement />} */}
         <Grids
-          isRenderPhoto={setRenderedPhoto}
           target={props.posts.data[target]}
         ></Grids>
         {/* <SuspenseComponent target={props.posts.data[target]}/> */}
@@ -81,37 +71,4 @@ export async function getStaticProps() {
     console.log("err: ", err);
     return err;
   }
-}
-
-function Plug() {
-  // Вот сюда gif с загрузкой
-  return <Player
-    autoplay
-    loop
-    src="https://lottie.host/3f1693db-8d00-4440-b0f4-54b46ba57620/uc8D8CHXxb.json"
-    style={{ height: '100%', backgroundColor: '#F3F5F8' }}
-  />
-}
-
-function LoaderElement() {
-  return <div className="wrapper">
-    <div className="net plug">
-      <div className="net_first">
-        <Plug />
-        <Plug />
-        <Plug />
-      </div>
-      {/* <div className="net_second">
-        <Plug />
-        <Plug />
-        <Plug />
-        <Plug />
-      </div>
-      <div className="net_third">
-        <Plug />
-        <Plug />
-        <Plug />
-      </div> */}
-    </div>
-  </div>
 }

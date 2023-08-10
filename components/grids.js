@@ -1,30 +1,34 @@
-'use client';
+"use client";
 import { Suspense, useEffect, useState } from "react";
 import GridComponent from "../components/grid-project/index";
 import { pb } from "../utils/pb";
 import { Skeleton } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
+import { Player } from "@lottiefiles/react-lottie-player";
 
-export default function Grids({ isRenderPhoto, target }) {
+export default function Grids({ target }) {
   const [photos, setPhotos] = useState([]);
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [fetching, setFetching] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
   const [countPhotoready, setCountPhotoready] = useState(0);
+
+  const [renderedPhoto, setRenderedPhoto] = useState(false);
+
   let test = [];
   // https://www.npmjs.com/package/react-breakpoints
   // запрос данных для сетки
   useEffect(() => {
-    if (countPhotoready > 3 || countPhotoready < totalCount %10) { 
+    // if (countPhotoready > 3 || countPhotoready < totalCount %10) {
     // мб прописать на то, чтобы все картинки были loaded
     // костыль для лоудера
-    // setTimeout(() => {
-      console.log("timout ", countPhotoready, totalCount %10)
-      isRenderPhoto(true)
-    // }, 3500)
-    }
-  }, [countPhotoready])
+    setTimeout(() => {
+      console.log("timout ", countPhotoready, totalCount % 10);
+      setRenderedPhoto(true);
+    }, 3500);
+    // }
+  }, [fetching]);
 
   //   const SuspenseComponent = dynamic(
   //   () => import("../components/grid-project/index"),
@@ -65,26 +69,14 @@ export default function Grids({ isRenderPhoto, target }) {
           })
           .finally(() => setFetching(false));
       }
-      // старая заглушка, потом убрать
-      // axios.get(`https://jsonplaceholder.typicode.com/photos?_limit=10&_page=${currentPage}`)
-      //     .then(response => {
-      //         setPhotos([...photos, ...response.data])
-      //         setCurrentPage(prevState => prevState + 1)
-      //         //кол-во фото на сервере
-      //         setTotalCount(response.headers['x-total-count'])
-      //         //setTotalCount(33)
-      //     })
-      //     .catch((e) => console.log("error fetching data for grid: ", e))
-      //     .finally(() => setFetching(false))
       console.log("fetching end", posts);
     }
   }, [fetching]);
 
-
   // сбрасываем посты и запрашивем новые если поменялся таргет фильтра
   useEffect(() => {
-    setCountPhotoready(0)
-    isRenderPhoto(false);
+    setRenderedPhoto(false);
+    setCountPhotoready(0);
     setCurrentPage(1);
     setPhotos([]);
     setFetching(true);
@@ -113,9 +105,53 @@ export default function Grids({ isRenderPhoto, target }) {
   console.log("photos: ", photos);
 
   return (
-    // здесь запрос что первое фото сделано и можно отображать
-<GridComponent isFirstPhotoLoaded={setCountPhotoready} array={[...photos]} />
-// <SuspenseComponent array={[...photos]}></SuspenseComponent> 
+    <>
+      {!renderedPhoto && <LoaderElement />}
+      {renderedPhoto && (
+        <GridComponent
+          isFirstPhotoLoaded={setCountPhotoready}
+          array={[...photos]}
+        />
+      )}
+      {/* <SuspenseComponent array={[...photos]}></SuspenseComponent>  */}
+    </>
     // TODO add Suspense
+  );
+}
+
+function Plug() {
+  // Вот сюда gif с загрузкой
+  return (
+    <Player
+      autoplay
+      loop
+      src="https://lottie.host/3f1693db-8d00-4440-b0f4-54b46ba57620/uc8D8CHXxb.json"
+      style={{ height: "100%", backgroundColor: "#F3F5F8" }}
+    />
+  );
+}
+
+function LoaderElement() {
+  return (
+    <div className="wrapper">
+      <div className="net plug">
+        <div className="net_first">
+          <Plug />
+          <Plug />
+          <Plug />
+        </div>
+        {/* <div className="net_second">
+        <Plug />
+        <Plug />
+        <Plug />
+        <Plug />
+      </div>
+      <div className="net_third">
+        <Plug />
+        <Plug />
+        <Plug />
+      </div> */}
+      </div>
+    </div>
   );
 }
