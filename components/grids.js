@@ -1,10 +1,8 @@
 "use client";
-import { Suspense, useEffect, useState } from "react";
+import { Player } from "@lottiefiles/react-lottie-player";
+import { useEffect, useState } from "react";
 import GridComponent from "../components/grid-project/index";
 import { pb } from "../utils/pb";
-import { Skeleton } from "@chakra-ui/react";
-import dynamic from "next/dynamic";
-import { Player } from "@lottiefiles/react-lottie-player";
 
 export default function Grids({ target }) {
   const [photos, setPhotos] = useState([]);
@@ -20,7 +18,8 @@ export default function Grids({ target }) {
   // https://www.npmjs.com/package/react-breakpoints
   // запрос данных для сетки
   useEffect(() => {
-    // if (countPhotoready > 3 || countPhotoready < totalCount %10) {
+    // учесть что countPhotoready < totalCount %10 может быть равно 0
+    // if (countPhotoready > 3 || (countPhotoready >= 1 && countPhotoready >= totalCount %10)) {
     // мб прописать на то, чтобы все картинки были loaded
     // костыль для лоудера
     setTimeout(() => {
@@ -30,12 +29,7 @@ export default function Grids({ target }) {
     // }
   }, [fetching]);
 
-  //   const SuspenseComponent = dynamic(
-  //   () => import("../components/grid-project/index"),
-  //   { loading: () => <Skeleton height='200px' />,
-  //     ssr: false,
-  //    }
-  // );
+  // TODO переписать как тут https://devtrium.com/posts/async-functions-useeffect
   useEffect(() => {
     if (fetching) {
       // если выбраны все посты

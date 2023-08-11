@@ -7,7 +7,7 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
   if (array.length < 1) {
     return;
   }
-
+  
   //массив с 3мя рядами сетки
   let net = [];
   //1 ряд

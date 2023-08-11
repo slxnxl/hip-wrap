@@ -1,25 +1,12 @@
 import {
   Box,
-  Flex,
-  Container,
-  Avatar,
-  HStack,
-  Link,
-  IconButton,
   Button,
-  Menu,
-  MenuButton,
   ButtonGroup,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
-  useColorModeValue,
-  Stack, Heading
+  Container,
+  Flex,
+  Link
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import Image from 'next/image'
-import styles from "../styles/Home.module.css";
+import Image from 'next/image';
 // import '../styles/logo.css'
 
 // https://www.framer.com/motion/examples/

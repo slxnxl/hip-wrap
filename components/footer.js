@@ -74,7 +74,7 @@ export default function Footer({ adress }) {
             <Text as="b">показать на карте</Text>
           </Box>
         </Box>
-        <Box display="flex" flexDirection="column>">
+        <Box display="flex" flexDirection="colunm>">
         <Divider className="rotate" />
         </Box>
       </Flex>

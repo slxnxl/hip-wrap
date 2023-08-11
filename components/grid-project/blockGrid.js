@@ -1,11 +1,11 @@
-'use client'
+"use client";
 import { AspectRatio, Box, Text, Skeleton } from "@chakra-ui/react";
 import Image from "next/image";
 import { Suspense, useState } from "react";
 
 export default function BlockGrid({ isPhotoLoaded, project }) {
   const [load, setLoad] = useState(false);
-  console.log("load ", project.name, " ", load); 
+  console.log("load ", project.name, " ", load);
   return project?.video === true ? (
     <Box
       as="video"
@@ -34,10 +34,16 @@ export default function BlockGrid({ isPhotoLoaded, project }) {
       className="image_box"
       display={"flex"}
     >
-      <Skeleton isLoaded={load} speed={10}  startColor='pink.500' endColor='orange.500'  height='100px'>
+      <Skeleton
+        isLoaded={load}
+        speed={10}
+        startColor="pink.500"
+        endColor="orange.500"
+        height="100px"
+      >
         <Image
           layout="fill"
-          onLoadingComplete={(e)=> setLoad(true)}
+          onLoadingComplete={(e) => setLoad(true)}
           objectFit="cover"
           quality={100}
           alt={project.name}
@@ -54,5 +60,4 @@ function Loading() {
 }
 
 // https://codesandbox.io/s/framer-motion-image-gallery-pqvx3?from-embed
-// как сделать галерею 
-
+// как сделать галерею
