@@ -3,10 +3,6 @@ import BlockGrid from "./blockGrid";
 // import getPhotoUrl from "../../utils/getPhotourl";
 export default function GridComponent({ isFirstPhotoLoaded, array }) {
   const isMobile = useMediaQuery("(max-width: 640px)");
-
-  if (array.length < 1) {
-    return;
-  }
   
   //массив с 3мя рядами сетки
   let net = [];
@@ -50,8 +46,8 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
     const foo = (
       <div className="net" key={currentPage}>
         <div className="net_first">{first}</div>
-        {second.length > 1 && <div className="net_second">{second}</div>}
-        {third.length > 1 && <div className="net_third">{third}</div>}
+        {second.length > 0 && <div className="net_second">{second}</div>}
+        {third.length > 0 && <div className="net_third">{third}</div>}
       </div>
     );
 

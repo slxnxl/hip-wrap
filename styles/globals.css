@@ -9,6 +9,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  height: 100%;
 }
 
 a {
@@ -37,4 +39,16 @@ a {
 .location_icon {
   margin-left: -5px;
   margin-right: 5px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+  @media (max-width: 640px) { 
+    margin-top: 72px;
+  }
+ 
 }
