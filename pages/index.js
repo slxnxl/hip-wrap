@@ -38,16 +38,6 @@ export default function Home(props) {
         {/* </Skeleton> */}
 
       </main>
-      <Footer adress={123}/>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Create by slxnxl
-        </a>
-      </footer>
     </div>
   );
 }

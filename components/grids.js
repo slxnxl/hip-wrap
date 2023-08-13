@@ -18,15 +18,9 @@ export default function Grids({ target }) {
   // https://www.npmjs.com/package/react-breakpoints
   // запрос данных для сетки
   useEffect(() => {
-    // учесть что countPhotoready < totalCount %10 может быть равно 0
-    // if (countPhotoready > 3 || (countPhotoready >= 1 && countPhotoready >= totalCount %10)) {
-    // мб прописать на то, чтобы все картинки были loaded
-    // костыль для лоудера
-    setTimeout(() => {
-      console.log("timout ", countPhotoready, totalCount % 10);
-      setRenderedPhoto(true);
-    }, 3500);
-    // }
+    if (!fetching) {
+      setRenderedPhoto(true)
+    }
   }, [fetching]);
 
   // TODO переписать как тут https://devtrium.com/posts/async-functions-useeffect
@@ -96,7 +90,7 @@ export default function Grids({ target }) {
     }
   };
 
-  console.log("photos: ", photos);
+ // console.log("photos: ", photos);
 
   return (
     <>

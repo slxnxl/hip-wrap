@@ -2,10 +2,12 @@
 import { AspectRatio, Box, Text, Skeleton } from "@chakra-ui/react";
 import Image from "next/image";
 import { Suspense, useState } from "react";
+import { Player } from "@lottiefiles/react-lottie-player";
+
 
 export default function BlockGrid({ isPhotoLoaded, project }) {
   const [load, setLoad] = useState(false);
-  console.log("load ", project.name, " ", load);
+  //console.log("load ", project.name, " ", load);
   return project?.video === true ? (
     <Box
       as="video"
@@ -34,14 +36,9 @@ export default function BlockGrid({ isPhotoLoaded, project }) {
       className="image_box"
       display={"flex"}
     >
-      <Skeleton
-        isLoaded={load}
-        speed={10}
-        startColor="pink.500"
-        endColor="orange.500"
-        height="100px"
-      >
-        <Image
+      {!load && <Plug />}
+      
+      <Image
           layout="fill"
           onLoadingComplete={(e) => setLoad(true)}
           objectFit="cover"
@@ -50,14 +47,23 @@ export default function BlockGrid({ isPhotoLoaded, project }) {
           // loading="lazy"
           src={`https://better-autumn.pockethost.io/api/files/${project.collectionId}/${project.id}/${project.main_image}`}
         ></Image>
-      </Skeleton>
     </Box>
   );
 }
 
-function Loading() {
-  return <h2>🌀 Loading...</h2>;
-}
 
 // https://codesandbox.io/s/framer-motion-image-gallery-pqvx3?from-embed
 // как сделать галерею
+
+function Plug() {
+  // Вот сюда gif с загрузкой
+  return (
+    <Player
+      autoplay
+      loop
+      src="https://lottie.host/3f1693db-8d00-4440-b0f4-54b46ba57620/uc8D8CHXxb.json"
+      style={{ height: "100%", backgroundColor: "#F3F5F8" }}
+    />
+  );
+}
+
