@@ -46,9 +46,12 @@ a {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
+}
 
-  @media (max-width: 640px) { 
+@media (max-width: 640px) {
+  .container {
     margin-top: 72px;
   }
- 
 }

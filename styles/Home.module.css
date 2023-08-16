@@ -1,8 +1,3 @@
-.container {
-
-  /*max-width:1440px;*/
-  margin: 0 auto;
-}
 
 .main {
   min-height: 100vh;
@@ -150,6 +145,11 @@
   .logo img {
     filter: invert(1);
   }
+}
+
+.image_box {
+  display: flex;
+  position: relative;
 }
 
 .image_box:hover {

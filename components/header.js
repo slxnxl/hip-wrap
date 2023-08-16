@@ -44,7 +44,7 @@ const links = [
       <Box px={5}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'} >
           {/*<Heading as='h3' size='lg' fontWeight={'800'} className={styles.logo}>HIPWRAP</Heading>*/}
-          <Link href="/"><Image src="/logo.svg" alt="logo" objectFit='cover' width="200px" height="80px"></Image></Link>
+          <Link href="/"><Image src="/logo.svg" alt="logo" objectFit='cover' width="200px" height="80px" priority></Image></Link>
           <ButtonGroup gap='5'>
           {links.map((item, index) => (
           <Button key={index} colorScheme='black' variant='link' className={"menu-button"}><Link href={item.link}>{item.title}</Link></Button>

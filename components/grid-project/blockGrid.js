@@ -34,7 +34,6 @@ export default function BlockGrid({ isPhotoLoaded, project }) {
       w="100%"
       h="100%"
       className="image_box"
-      display={"flex"}
     >
       {!load && <Plug />}
       
@@ -44,6 +43,8 @@ export default function BlockGrid({ isPhotoLoaded, project }) {
           objectFit="cover"
           quality={100}
           alt={project.name}
+          priority
+          fill={'true'}
           // loading="lazy"
           src={`https://better-autumn.pockethost.io/api/files/${project.collectionId}/${project.id}/${project.main_image}`}
         ></Image>
