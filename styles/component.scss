@@ -330,3 +330,110 @@
   }
 
 }
+
+.carousel {
+
+  &_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 28px;
+    background: #3F3EC2;
+    color: #fff;
+    aspect-ratio: 1/1;
+  }
+
+  &_title {
+    font-weight: 800;
+  }
+}
+
+.footer {
+  padding-bottom: 160px;
+
+  @media (max-width: 640px) {
+    padding-bottom: 100px;
+  }
+
+}
+
+.service {
+  padding: 40px 24px;
+
+  &_item {
+    position: relative;
+    display: block;
+    text-transform: uppercase;
+    animation: fadeIn 0.5s linear;
+    animation-fill-mode: both;
+  }
+
+  &_description {
+    position: relative;
+    padding: 24px;
+    padding-bottom: 60px;
+    background: #3F3EC2;
+    color: #fff;
+    z-index: 2;
+    margin-bottom: 60px;
+
+   /* &::before {
+      content: '';
+      position: absolute;
+      display:block;
+      left:-5%;
+      top:-20px;
+      width:110%;
+      height: 40px;
+      transform: rotate(-2deg);
+      background: #fff;
+    }*/
+
+    &::after {
+      content: '';
+      position: absolute;
+      display:block;
+      left:-5%;
+      bottom:-20px;
+      width:110%;
+      height: 40px;
+      transform: rotate(-2deg);
+      background: #fff;
+    }
+  }
+
+  &_section {
+    display: flex;
+    flex-direction: column;
+
+    &-block {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &-list {
+      flex: 50%
+    }
+
+    &-img {
+      display: flex;
+      flex: 50%;
+      background: #805AD5;
+    }
+  }
+}
+
+// Keyframe animation
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    top: 100px;
+  }
+  75% {
+    opacity: 0.5;
+    top: 0px;
+  }
+  100% {
+    opacity: 1;
+  }
+}

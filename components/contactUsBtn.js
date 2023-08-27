@@ -25,6 +25,7 @@ export default function ContactUSBtn() {
                 zIndex={1}
                 bg='#3F3EC2'
                 color='#fff'
+                boxShadow='0 0 4px #fff'
                 onClick={onOpen}>
                 связаться с нами
             </Button>
