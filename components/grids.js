@@ -83,7 +83,7 @@ export default function Grids({ target }) {
     if (
       e.target.documentElement.scrollHeight -
         (e.target.documentElement.scrollTop + window.innerHeight) <
-        100 &&
+        1000 &&
       photos.length < totalCount
     ) {
       setFetching(true);

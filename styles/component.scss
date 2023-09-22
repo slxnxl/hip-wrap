@@ -20,6 +20,15 @@
     aspect-ratio: 1/1;
     margin-bottom: 8px;
   }
+  &:hover {
+    transition: 1s;
+    transform: scale(.95)!important;
+
+    img {
+      transition: 1s;
+      transform: scale(1.2);
+    }
+  }
 }
 
 .plug {
