@@ -16,17 +16,19 @@ export default function ScrollImages() {
                             sort: '-created',
                         })
                         console.log("sponsorData: ", sponsorData)
-                        setData(JSON.parse(JSON.stringify(sponsorData)))
+                        await setData(JSON.parse(JSON.stringify(sponsorData)))
                         const result = []
-                        data.foreEach((e) => {
+                        console.log("data in carusel: ", data)
+                        data.forEach((e) => {
                             result.push(
                                 <div className="carousel_item">
-                                    <p className="carousel_title">{e.name} + logopicture</p>
+                                    <p className="carousel_title">123 + logopicture</p>
                                     <div className="carousel_text">All-new strikingly thin
                                         design so you can work
                                     </div>
                                 </div>)
                         })
+                        console.log("image: ", result)
                         setImages(result)
                         setIsLoaded(true)
                     } catch (err) {
@@ -39,7 +41,7 @@ export default function ScrollImages() {
             fetchDataCarousel()
         }
         , [])
-    console.log("data car: ", data)
+    console.log("data carusel last: ", data)
     // const [images, setImages] = useState(() => {
     //
     //
