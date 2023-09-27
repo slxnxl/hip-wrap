@@ -80,10 +80,16 @@ export default function Grids({ target }) {
 
   const scrollHeandler = (e) => {
     //проверка, что мы приближаемся к краю страницы
+    //console.log(e.target.documentElement.scrollHeight)
+    //console.log(e.target.documentElement.scrollTop);
+    //console.log(window.innerHeight);
+    //console.log(e.target.documentElement.scrollHeight -
+    //  (e.target.documentElement.scrollTop + window.innerHeight));
+    //  console.log(photos.length, totalCount);
     if (
       e.target.documentElement.scrollHeight -
         (e.target.documentElement.scrollTop + window.innerHeight) <
-        1000 &&
+        100 &&
       photos.length < totalCount
     ) {
       setFetching(true);
@@ -108,7 +114,6 @@ export default function Grids({ target }) {
 }
 
 function Plug() {
-  // Вот сюда gif с загрузкой
   return (
     <Player
       autoplay

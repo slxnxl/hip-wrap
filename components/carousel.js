@@ -1,25 +1,61 @@
 import {Box, Flex} from '@chakra-ui/react'
 import {AnimatePresence, motion} from 'framer-motion'
 import {useEffect, useRef, useState} from 'react'
+import {pb} from "../utils/pb";
+import {compileString} from "sass";
 
 export default function ScrollImages() {
+    const [isLoaded, setIsLoaded] = useState(false)
+    const [data, setData] = useState([])
 
-    const [images] = useState(() => {
+    useEffect(() => {
+            async function fetchDataCarousel() {
+                if (!isLoaded) {
+                    try {
+                        const sponsorData = await pb.collection('sponsorBrands').getFullList({
+                            sort: '-created',
+                        })
+                        console.log("sponsorData: ", sponsorData)
+                        setData(JSON.parse(JSON.stringify(sponsorData)))
+                        const result = []
+                        data.foreEach((e) => {
+                            result.push(
+                                <div className="carousel_item">
+                                    <p className="carousel_title">{e.name} + logopicture</p>
+                                    <div className="carousel_text">All-new strikingly thin
+                                        design so you can work
+                                    </div>
+                                </div>)
+                        })
+                        setImages(result)
+                        setIsLoaded(true)
+                    } catch (err) {
+                        console.log("car err: ", err)
+                        return err
+                    }
+                }
+            }
 
-        const result = []
-
-        result.push(
-            <div className="carousel_item">
-                <p className="carousel_title">Brand name + logopicture</p>
-                <div className="carousel_text">All-new strikingly thin
-                    design so you can work
-                </div>
-            </div>
-        )
-
-        return result
-    })
-
+            fetchDataCarousel()
+        }
+        , [])
+    console.log("data car: ", data)
+    // const [images, setImages] = useState(() => {
+    //
+    //
+    //     const result = []
+    //     result.push(
+    //         <div className="carousel_item">
+    //             <p className="carousel_title">Brand name + logopicture</p>
+    //             <div className="carousel_text">All-new strikingly thin
+    //                 design so you can work
+    //             </div>
+    //         </div>
+    //     )
+    //
+    //     return result
+    // })
+    const [images, setImages] = useState([])
     const ref = useRef(null)
 
     // Горизонтальная длина одного изображения
@@ -63,7 +99,8 @@ export default function ScrollImages() {
     }, [ref.current]) //Выполняется в момент рендеринга DOM и определения ширины.
 
 
-    return (
+    return (<>
+        { (!isLoaded) ? <p>Загрузка...</p> :
         <>
             <Box
                 alignItems="center"
@@ -117,5 +154,6 @@ export default function ScrollImages() {
                 </AnimatePresence>
             </Box>
         </>
+}</>
     )
 }
