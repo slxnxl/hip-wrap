@@ -6,8 +6,11 @@ import {compileString} from "sass";
 
 export default function ScrollImages() {
     const [isLoaded, setIsLoaded] = useState(false)
+    const [isReadyBlocks, setIsReady] = useState(false)
     const [data, setData] = useState([])
+    const [images, setImages] = useState([])
 
+    // запрашиваем данные по спонсорам
     useEffect(() => {
             async function fetchDataCarousel() {
                 if (!isLoaded) {
@@ -16,20 +19,7 @@ export default function ScrollImages() {
                             sort: '-created',
                         })
                         console.log("sponsorData: ", sponsorData)
-                        await setData(JSON.parse(JSON.stringify(sponsorData)))
-                        const result = []
-                        console.log("data in carusel: ", data)
-                        data.forEach((e) => {
-                            result.push(
-                                <div className="carousel_item">
-                                    <p className="carousel_title">123 + logopicture</p>
-                                    <div className="carousel_text">All-new strikingly thin
-                                        design so you can work
-                                    </div>
-                                </div>)
-                        })
-                        console.log("image: ", result)
-                        setImages(result)
+                        setData(await JSON.parse(JSON.stringify(sponsorData)))
                         setIsLoaded(true)
                     } catch (err) {
                         console.log("car err: ", err)
@@ -41,23 +31,27 @@ export default function ScrollImages() {
             fetchDataCarousel()
         }
         , [])
-    console.log("data carusel last: ", data)
-    // const [images, setImages] = useState(() => {
-    //
-    //
-    //     const result = []
-    //     result.push(
-    //         <div className="carousel_item">
-    //             <p className="carousel_title">Brand name + logopicture</p>
-    //             <div className="carousel_text">All-new strikingly thin
-    //                 design so you can work
-    //             </div>
-    //         </div>
-    //     )
-    //
-    //     return result
-    // })
-    const [images, setImages] = useState([])
+
+    // после получения данных по спонсорам создаем images компоненты (думаю можно потом все в 1 useEffect воткнуть)
+    useEffect(() => {
+        console.log("user 2 data: ", data)
+        console.log("ready: ", isReadyBlocks)
+        if (!isReadyBlocks) { const result = []
+            data.forEach((e) => {
+                result.push(
+                    <div className="carousel_item">
+                        <p className="carousel_title">123 + logopicture</p>
+                        <div className="carousel_text">All-new strikingly thin
+                            design so you can work
+                        </div>
+                    </div>)
+            })
+            setImages(result)
+            setIsReady(true)
+        }
+    }, [isLoaded]);
+
+
     const ref = useRef(null)
 
     // Горизонтальная длина одного изображения
@@ -78,6 +72,7 @@ export default function ScrollImages() {
         if (
             ref.current?.offsetWidth &&
             imageBlocks.length * itemWidthWithGap < ref.current.offsetWidth
+            && images.length > 0
         ) {
             // Сколько частей не хватает до общей длины?
             const fillableNumberOfContents = Math.floor(
@@ -100,9 +95,10 @@ export default function ScrollImages() {
         }
     }, [ref.current]) //Выполняется в момент рендеринга DOM и определения ширины.
 
-
+    // TODO вот это значение всегда []
+    console.log("image: ", images)
     return (<>
-        { (!isLoaded) ? <p>Загрузка...</p> :
+        { (!isReadyBlocks) ? <p>Загрузка...</p> :
         <>
             <Box
                 alignItems="center"
