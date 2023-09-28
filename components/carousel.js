@@ -13,7 +13,6 @@ export default function ScrollImages() {
     // запрашиваем данные по спонсорам
     useEffect(() => {
             async function fetchDataCarousel() {
-                if (!isLoaded) {
                     try {
                         const sponsorData = await pb.collection('sponsorBrands').getFullList({
                             sort: '-created',
@@ -26,7 +25,7 @@ export default function ScrollImages() {
                         return err
                     }
                 }
-            }
+
 
             fetchDataCarousel()
         }
@@ -36,7 +35,7 @@ export default function ScrollImages() {
     useEffect(() => {
         console.log("user 2 data: ", data)
         console.log("ready: ", isReadyBlocks)
-        if (!isReadyBlocks) { const result = []
+        const result = []
             data.forEach((e) => {
                 result.push(
                     <div className="carousel_item">
@@ -46,9 +45,9 @@ export default function ScrollImages() {
                         </div>
                     </div>)
             })
-            setImages(result)
+            setImages([...result])
             setIsReady(true)
-        }
+
     }, [isLoaded]);
 
 
