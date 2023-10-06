@@ -57,7 +57,7 @@ export default function ContactUSBtn() {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme='purple' mr={3} onClick={onClose} className="modal_footer-btn">
+                        <Button colorScheme='purple' mr={3} onClick={onClose} className="modal_footer-btn" backgroundColor='#3F3EC2'>
                             Отправить
                         </Button>
                     </ModalFooter>

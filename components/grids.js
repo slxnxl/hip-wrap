@@ -71,7 +71,7 @@ export default function Grids({ target }) {
   }, [target]);
 
   useEffect(() => {
-    document.addEventListener("scroll", scrollHeandler);
+        document.addEventListener("scroll", scrollHeandler);
 
     return function () {
       document.removeEventListener("scroll", scrollHeandler);
@@ -80,10 +80,10 @@ export default function Grids({ target }) {
 
   const scrollHeandler = (e) => {
     //проверка, что мы приближаемся к краю страницы
-    if (
+        if (
       e.target.documentElement.scrollHeight -
         (e.target.documentElement.scrollTop + window.innerHeight) <
-        1000 &&
+        100 &&
       photos.length < totalCount
     ) {
       setFetching(true);

@@ -57,7 +57,7 @@ export default function Service() {
                             return (
                                 <ListItem className="service_item" style={{animationDelay: `${0.25 * (index + 1)}s`}}
                                           key={index}>
-                                    <ListIcon as={MdDirectionsCarFilled} color='#805AD5'/>
+                                    <ListIcon as={MdDirectionsCarFilled} color='#3F3EC2'/>
                                     {item}
                                 </ListItem>)
                         })}
@@ -81,7 +81,7 @@ export default function Service() {
                             return (
                                 <ListItem className="service_item" style={{animationDelay: `${0.25 * (index + 1)}s`}}
                                           key={index}>
-                                    <ListIcon as={MdAutoAwesome} color='#805AD5'/>
+                                    <ListIcon as={MdAutoAwesome} color='#3F3EC2'/>
                                     Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
                                 </ListItem>)
                         })}

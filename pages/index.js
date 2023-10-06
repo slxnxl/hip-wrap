@@ -22,10 +22,10 @@ export default function Home(props) {
       </Head>
       <main>
         <Box w="100%" h="50vh">
-          <Suspense fallback={null}>
+          {/* <Suspense fallback={null}> */}
             {/* <CarThree></CarThree> */}
             {/*<Car/>*/}
-          </Suspense>
+          {/* </Suspense> */}
         </Box>
 
         <FilterButton func={setTarget} data={props.posts.data}></FilterButton>
