@@ -81,4 +81,4 @@ export function Porshe(props) {
   )
 }
 
-useGLTF.preload('/911-transformed.glb')
+// useGLTF.preload('/911-transformed.glb')
