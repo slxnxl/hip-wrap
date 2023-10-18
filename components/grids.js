@@ -129,7 +129,7 @@ export default function Grids({ target }) {
   );
 }
 
-function Plug() {
+export function Plug() {
   return (
     <Player
       autoplay

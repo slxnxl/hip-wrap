@@ -16,13 +16,13 @@ import { LayoutGroup, motion, AnimatePresence, animate } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import ModalProjectView from "../modalProjectView";
-import ContactUSBtn from "../contactUsBtn";
+
 import ContactUSBtnInModal from "../contactBtnInModal";
 
 // import getPhotoUrl from "../../utils/getPhotourl";
 export default function GridComponent({ isFirstPhotoLoaded, array }) {
   const isMobile = useMediaQuery("(max-width: 640px)");
-  const [indexAnimate, setIndexAnimate] = useState(false);
+  //const [indexAnimate, setIndexAnimate] = useState(false);
   const [openProject, setOpenProject] = useState();
 
   const handleClose = useCallback(() => {
@@ -51,7 +51,7 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
       // const linkUmg = getPhotoUrl(photo)
       let item = (
         <div className="cell" key={index}>
-          <BlockGrid project={photo} onOpen={onOpen}></BlockGrid>
+          <BlockGrid project={photo} setOpenProject={setOpenProject} onOpen={onOpen}></BlockGrid>
         </div>
       );
 
@@ -92,8 +92,8 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
             <BlockGrid
               project={photo}
               onOpen={onOpen}
+              setOpenProject={setOpenProject}
               isPhotoLoaded={123}
-              project={photo}
             ></BlockGrid>
           </div>
         );
@@ -109,7 +109,7 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
           <ModalHeader></ModalHeader>
           <ModalCloseButton className="modal_close" />
           <ModalBody>
-            <ModalProjectView />
+            <ModalProjectView project={openProject} />
             {/*<Image
                           //layout="fill"
                           width="500px"
@@ -150,7 +150,7 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
           <ModalHeader></ModalHeader>
           <ModalCloseButton className="modal_close" />
           <ModalBody>
-            <ModalProjectView />
+            <ModalProjectView project={openProject}/>
           </ModalBody>
           <ModalFooter>
             <ContactUSBtnInModal></ContactUSBtnInModal>

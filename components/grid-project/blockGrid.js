@@ -6,9 +6,14 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import { LayoutGroup, motion, AnimatePresence } from "framer-motion";
 
 
-export default function BlockGrid({ isPhotoLoaded, project,  onOpen}) {
+export default function BlockGrid({ isPhotoLoaded, project,  onOpen, setOpenProject}) {
   const [load, setLoad] = useState(false);
   //console.log("load ", project.name, " ", load);
+  const action = () => {
+    setOpenProject(project);
+    console.log("setOpenProject", project);
+    onOpen()
+  }
   return project?.video === true ? (
     <Box
       as="video"
@@ -35,7 +40,7 @@ export default function BlockGrid({ isPhotoLoaded, project,  onOpen}) {
       //as={motion.div}
       //layoutId={project.id}
       //onClick={() => {indexAnimate === false && setIndexAnimate(project.id)}}
-      onClick={onOpen}
+      onClick={action}
       initial={{ borderRadius: "0.6rem" }}
       overflow={false}
       w="100%"
