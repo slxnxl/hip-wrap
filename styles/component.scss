@@ -339,6 +339,17 @@
 
 }
 
+.store_btn {
+  margin: 0  auto !important;
+  width: 40%;
+  
+  @media (max-width: 640px) {
+    width: 60%;
+    height: 2.5rem !important;
+    font-size: 1.5rem !important;
+  }
+}
+
 .carousel {
 
   &_item {
@@ -355,7 +366,9 @@
     font-weight: 800;
   }
 }
-
+.store_modal{
+height: 150px;
+}
 .footer {
   padding-bottom: 160px;
 

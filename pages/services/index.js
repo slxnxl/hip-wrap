@@ -44,9 +44,9 @@ import { pb } from "../../utils/pb";
 export default function Service(props) {
   const isMobile = useMediaQuery("(max-width: 640px)");
   const [target, setTarget] = React.useState(0);
-  const pointValues = props.servises.data[target].pointText;
-  console.log("pointValues ", pointValues);
-  console.log("props ", props);
+  //const pointValues = props.servises.data[target].pointText;
+  //console.log("pointValues ", pointValues);
+  //console.log("props ", props);
   return (
     <>
       <FilterButton func={setTarget} data={props.servises.data}></FilterButton>
@@ -119,6 +119,7 @@ export default function Service(props) {
               >
                 <Image
                   src={
+                    //TODO сюда третью картинку 
                     "https://better-autumn.pockethost.io/api/files/4qhxhx8je8gzimb/3frg08vtw195lqv/photo_2023_10_19_01_25_58_hn7wHAdzyN.jpg"
                   }
                   layout="fill"
@@ -214,7 +215,7 @@ export async function getStaticProps() {
     // TODO по идее можно переделать без JSON
     const data = JSON.parse(JSON.stringify(getRecords));
     //data.unshift({ id: 0, name: "все" });
-    console.log("data: ", data);
+    //console.log("data: ", data);
     return {
       props: {
         // TODO упростить представление потом
