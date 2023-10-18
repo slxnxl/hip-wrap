@@ -15,14 +15,16 @@ import BlockGrid from "./blockGrid";
 import { LayoutGroup, motion, AnimatePresence, animate } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import ModalProjectView from "../modalProjectView"
+import ModalProjectView from "../modalProjectView";
+import ContactUSBtn from "../contactUsBtn";
+import ContactUSBtnInModal from "../contactBtnInModal";
 
 // import getPhotoUrl from "../../utils/getPhotourl";
 export default function GridComponent({ isFirstPhotoLoaded, array }) {
   const isMobile = useMediaQuery("(max-width: 640px)");
   const [indexAnimate, setIndexAnimate] = useState(false);
   const [openProject, setOpenProject] = useState();
-  
+
   const handleClose = useCallback(() => {
     setIndexAnimate(false);
   }, []);
@@ -49,10 +51,7 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
       // const linkUmg = getPhotoUrl(photo)
       let item = (
         <div className="cell" key={index}>
-          <BlockGrid
-            project={photo}
-            onOpen={onOpen}
-          ></BlockGrid>
+          <BlockGrid project={photo} onOpen={onOpen}></BlockGrid>
         </div>
       );
 
@@ -90,20 +89,28 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
       {array.map((photo, index) => {
         return (
           <div className="cell" key={index}>
-            <BlockGrid  project={photo}
-            onOpen={onOpen} isPhotoLoaded={123} project={photo}></BlockGrid>
+            <BlockGrid
+              project={photo}
+              onOpen={onOpen}
+              isPhotoLoaded={123}
+              project={photo}
+            ></BlockGrid>
           </div>
         );
       })}
-          <Modal isOpen={isOpen} onClose={onClose}  isCentered={true} preserveScrollBarGap={true}>
-    <ModalOverlay/>
-    <ModalContent className="modal">
-        <ModalHeader>
-        </ModalHeader>
-        <ModalCloseButton className="modal_close"/>
-        <ModalBody>
-        <ModalProjectView/>
-        {/*<Image
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        isCentered={true}
+        preserveScrollBarGap={true}
+      >
+        <ModalOverlay />
+        <ModalContent className="modal">
+          <ModalHeader></ModalHeader>
+          <ModalCloseButton className="modal_close" />
+          <ModalBody>
+            <ModalProjectView />
+            {/*<Image
                           //layout="fill"
                           width="500px"
                           height="500px"
@@ -118,41 +125,41 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
                             "https://better-autumn.pockethost.io/api/files/lnto5n3zycdk3cm/r5jdlfc5tkrzzo7/project_2_AWhRimGYt9.jpg"
                           }
                         ></Image>*/}
-        </ModalBody>
+          </ModalBody>
 
-        <ModalFooter>
-            <Button colorScheme='purple' mr={3} onClick={onClose} className="modal_footer-btn">
-                Связатся с нами
-            </Button>
-        </ModalFooter>
-    </ModalContent>
-</Modal>
+          <ModalFooter>
+            <ContactUSBtnInModal></ContactUSBtnInModal>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </div>
   ) : (
     <>
-    <div id="wrapper" className="wrapper">
-       {net.map((item) => item)}
-    </div>
-    <Modal isOpen={isOpen} onClose={onClose}  isCentered={true} preserveScrollBarGap={true}>
-    <ModalOverlay/>
-    <ModalContent className="modal">
-        <ModalHeader>
-        </ModalHeader>
-        <ModalCloseButton className="modal_close"/>
-        <ModalBody>
-        <ModalProjectView/>
-        </ModalBody>
-
-        <ModalFooter>
-            <Button colorScheme='purple' mr={3} onClick={onClose} className="modal_footer-btn">
-                Связатся с нами
-            </Button>
-        </ModalFooter>
-    </ModalContent>
-</Modal>
-</>
-//нерабочие наработки по анимации
-//https://github.com/framer/motion/issues/905
+      <div id="wrapper" className="wrapper">
+        {net.map((item) => item)}
+      </div>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        size="xl"
+        isCentered={true}
+        preserveScrollBarGap={true}
+      >
+        <ModalOverlay />
+        <ModalContent className="modal">
+          <ModalHeader></ModalHeader>
+          <ModalCloseButton className="modal_close" />
+          <ModalBody>
+            <ModalProjectView />
+          </ModalBody>
+          <ModalFooter>
+            <ContactUSBtnInModal></ContactUSBtnInModal>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+    //нерабочие наработки по анимации
+    //https://github.com/framer/motion/issues/905
     //<LayoutGroup>
     //  <div id="wrapper" className="wrapper">
     //    {net.map((item) => item)}
@@ -188,7 +195,5 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
     //    </AnimatePresence>
     //  </div>
     //</LayoutGroup>
-  )
-  
-  ;
+  );
 }
