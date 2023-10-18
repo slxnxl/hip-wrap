@@ -30,7 +30,7 @@ export default function ContactUSBtn() {
                 связаться с нами
             </Button>
 
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isOpen={isOpen} onClose={onClose} preserveScrollBarGap={true}>
                 <ModalOverlay/>
                 <ModalContent className="modal">
                     <ModalHeader>
@@ -50,6 +50,7 @@ export default function ContactUSBtn() {
                     <ModalCloseButton className="modal_close"/>
                     <ModalBody>
                         <InputGroup>
+                            {/* eslint-disable-next-line react/no-children-prop*/}
                             <InputLeftAddon children='+7' className="modal_input"/>
                             <Input as={InputMask} mask="*** *** ** **" maskChar={null} type='tel'
                                    placeholder='Номер телефона' className="modal_input"/>
@@ -69,7 +70,7 @@ export default function ContactUSBtn() {
         //      right={['16px', '84px']}
         //      zIndex={1}
         //      bg='red'
-        // >contact us</Box>
+        // >contact us</Box>    
     )
 }
 

@@ -1,24 +1,57 @@
-import {Box, Flex} from '@chakra-ui/react'
-import {AnimatePresence, motion} from 'framer-motion'
-import {useEffect, useRef, useState} from 'react'
+import { Box, Flex } from '@chakra-ui/react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { pb } from "../utils/pb";
+import { compileString } from "sass";
 
 export default function ScrollImages() {
+    const [isLoaded, setIsLoaded] = useState(false)
+    const [isReadyBlocks, setIsReady] = useState(false)
+    const [data, setData] = useState([])
+    //const [images, setImages] = useState([])
+    const [imageBlocks, setImageBlocks] = useState([])
 
-    const [images] = useState(() => {
+    // запрашиваем данные по спонсорам
+    useEffect(() => {
+        async function fetchDataCarousel() {
+            try {
+                const sponsorData = await pb.collection('sponsorBrands').getFullList({
+                    sort: '-created',
+                })
+                //console.log("sponsorData: ", sponsorData)
+                setData(await JSON.parse(JSON.stringify(sponsorData)))
+                setIsLoaded(true)
+            } catch (err) {
+                //console.log("car err: ", err)
+                return err
+            }
+        }
 
+
+        fetchDataCarousel()
+    }
+        , [])
+
+    // после получения данных по спонсорам создаем images компоненты (думаю можно потом все в 1 useEffect воткнуть)
+    useEffect(() => {
+        //console.log("user 2 data: ", data)
+        //console.log("ready: ", isReadyBlocks)
         const result = []
+        data.forEach((e) => {
+            result.push(
+                <div className="carousel_item">
+                    <p className="carousel_title">{e.name} + logopicture</p>
+                    <div className="carousel_text">All-new strikingly thin
+                        design so you can work
+                    </div>
+                </div>)
+        })
+        // TODO: Костыль, нужно бы переделать потом
+        setImageBlocks([...result, ...result, ...result, ...result])
+        setIsReady(true)
 
-        result.push(
-            <div className="carousel_item">
-                <p className="carousel_title">Brand name + logopicture</p>
-                <div className="carousel_text">All-new strikingly thin
-                    design so you can work
-                </div>
-            </div>
-        )
+    }, [isLoaded]);
 
-        return result
-    })
 
     const ref = useRef(null)
 
@@ -29,9 +62,9 @@ export default function ScrollImages() {
     // Ширина изображения и общее расстояние между изображениями
     const itemWidthWithGap = itemWidth + gap
     // Количество изображений
-    const numberOfContents = images.length
+    const numberOfContents = imageBlocks.length
     // общая последовательность горизонтальных изображений
-    const [imageBlocks, setImageBlocks] = useState(images)
+    //const [imageBlocks, setImageBlocks] = useState(images)
 
     useEffect(() => {
         // ``Заполнить ширину''
@@ -40,6 +73,7 @@ export default function ScrollImages() {
         if (
             ref.current?.offsetWidth &&
             imageBlocks.length * itemWidthWithGap < ref.current.offsetWidth
+            && imageBlocks.length > 0
         ) {
             // Сколько частей не хватает до общей длины?
             const fillableNumberOfContents = Math.floor(
@@ -60,12 +94,15 @@ export default function ScrollImages() {
 
             setImageBlocks(newimageBlocks)
         }
+        //console.log(imageBlocks);
+        
     }, [ref.current]) //Выполняется в момент рендеринга DOM и определения ширины.
 
-
+    // TODO вот это значение всегда []
+    //console.log("image: ", imageBlocks)
     return (
-        <>
-            <Box
+        (isReadyBlocks && imageBlocks.length > 0)
+            ? (<Box
                 alignItems="center"
                 w="full"
                 position="relative"
@@ -100,6 +137,7 @@ export default function ScrollImages() {
                             w={`${itemWidthWithGap * imageBlocks.length}px`}
                             ml={`-${itemWidth}px`}
                         >
+                            <Box>{imageBlocks.length}</Box>
                             {imageBlocks.map((block, index) => {
                                 return (
                                     <Box
@@ -108,6 +146,7 @@ export default function ScrollImages() {
                                         h={`${itemWidth}px`}
                                         position="relative"
                                     >
+                                        
                                         {block}
                                     </Box>
                                 )
@@ -115,7 +154,8 @@ export default function ScrollImages() {
                         </Flex>
                     </motion.div>
                 </AnimatePresence>
-            </Box>
-        </>
+            </Box>)
+            : (<p>Загрузка...{imageBlocks.length} {imageBlocks.length > 0}</p>)
+
     )
 }

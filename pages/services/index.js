@@ -7,3 +7,5 @@ export default function Services() {
         <Service/>
     )
 }
+
+//сюда статик пропс
