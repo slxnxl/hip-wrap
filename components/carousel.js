@@ -47,7 +47,7 @@ export default function ScrollImages() {
                 </div>)
         })
         // TODO: Костыль, нужно бы переделать потом
-        setImageBlocks([...result, ...result, ...result])
+        setImageBlocks([...result, ...result, ...result, ...result])
         setIsReady(true)
 
     }, [isLoaded]);
@@ -132,7 +132,6 @@ export default function ScrollImages() {
                             }
                         }}
                     >
-                        <Box>{imageBlocks.length}</Box>
                         <Flex
                             gap={6}
                             w={`${itemWidthWithGap * imageBlocks.length}px`}

@@ -95,7 +95,7 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
           </div>
         );
       })}
-          <Modal isOpen={isOpen} onClose={onClose}  isCentered={true}>
+          <Modal isOpen={isOpen} onClose={onClose}  isCentered={true} preserveScrollBarGap={true}>
     <ModalOverlay/>
     <ModalContent className="modal">
         <ModalHeader>
@@ -133,7 +133,7 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
     <div id="wrapper" className="wrapper">
        {net.map((item) => item)}
     </div>
-    <Modal isOpen={isOpen} onClose={onClose}  isCentered={true}>
+    <Modal isOpen={isOpen} onClose={onClose}  isCentered={true} preserveScrollBarGap={true}>
     <ModalOverlay/>
     <ModalContent className="modal">
         <ModalHeader>

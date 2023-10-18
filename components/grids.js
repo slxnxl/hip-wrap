@@ -3,6 +3,7 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import { useEffect, useState } from "react";
 import GridComponent from "../components/grid-project/index";
 import { pb } from "../utils/pb";
+import { useMediaQuery } from "@chakra-ui/react";
 
 export default function Grids({ target }) {
   const [photos, setPhotos] = useState([]);
@@ -11,6 +12,7 @@ export default function Grids({ target }) {
   const [fetching, setFetching] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
   const [countPhotoready, setCountPhotoready] = useState(0);
+  const isMobile = useMediaQuery("(max-width: 640px)");
 
   const [renderedPhoto, setRenderedPhoto] = useState(false);
 
@@ -78,22 +80,35 @@ export default function Grids({ target }) {
     };
   }, [photos.length]);
 
+  //TODO поправить в дальнейшем
   const scrollHeandler = (e) => {
     //проверка, что мы приближаемся к краю страницы
     //console.log(e.target.documentElement.scrollHeight)
-    //console.log(e.target.documentElement.scrollTop);
-    //console.log(window.innerHeight);
-    //console.log(e.target.documentElement.scrollHeight -
-    //  (e.target.documentElement.scrollTop + window.innerHeight));
-    //  console.log(photos.length, totalCount);
-    if (
+    ////console.log(e.target.documentElement.scrollTop);
+    ////console.log(window.innerHeight);
+    console.log(e.target.documentElement.scrollHeight -
+      (e.target.documentElement.scrollTop + window.innerHeight));
+      //console.log(photos.length, totalCount);
+    //console.log("isMobile", isMobile);
+    if (isMobile[0] === true) {
+      if (
+        e.target.documentElement.scrollHeight -
+          (e.target.documentElement.scrollTop + window.innerHeight) <
+          1000 &&
+        photos.length < totalCount
+      ) {
+        console.log('загрузка началась');
+        setFetching(true);
+      }
+    } else  {if (
       e.target.documentElement.scrollHeight -
         (e.target.documentElement.scrollTop + window.innerHeight) <
-        100 &&
+        1500 &&
       photos.length < totalCount
     ) {
+      console.log('загрузка началась');
       setFetching(true);
-    }
+    }}
   };
 
  // console.log("photos: ", photos);

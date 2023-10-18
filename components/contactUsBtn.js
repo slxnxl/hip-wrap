@@ -30,7 +30,7 @@ export default function ContactUSBtn() {
                 связаться с нами
             </Button>
 
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isOpen={isOpen} onClose={onClose} preserveScrollBarGap={true}>
                 <ModalOverlay/>
                 <ModalContent className="modal">
                     <ModalHeader>
