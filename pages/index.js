@@ -7,6 +7,7 @@ import Footer from "../components/footer";
 import Grids from "../components/grids";
 import styles from "../styles/Home.module.css";
 import { pb } from "../utils/pb";
+import {CarThree} from "../components/threeDCar";
 
 export default function Home(props) {
   const [target, setTarget] = React.useState(0);
@@ -22,11 +23,9 @@ export default function Home(props) {
       </Head>
       <main>
         <Box w="100%" h="50vh">
-          {/* Блок с 3д, включить потом */}
-          {/*<Suspense fallback={null}>*/}
-            {/* <CarThree></CarThree> */}
-            {/*<Car/>*/}
-          {/*</Suspense>*/}
+          {/*<Suspense fallback={<p>loading...</p>}>
+             <CarThree></CarThree>
+          </Suspense>*/}
         </Box>
 
         <FilterButton func={setTarget} data={props.posts.data}></FilterButton>

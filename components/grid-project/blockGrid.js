@@ -3,9 +3,10 @@ import { AspectRatio, Box, Text, Skeleton } from "@chakra-ui/react";
 import Image from "next/image";
 import { Suspense, useState } from "react";
 import { Player } from "@lottiefiles/react-lottie-player";
+import { LayoutGroup, motion, AnimatePresence } from "framer-motion";
 
 
-export default function BlockGrid({ isPhotoLoaded, project }) {
+export default function BlockGrid({ isPhotoLoaded, project,  onOpen}) {
   const [load, setLoad] = useState(false);
   //console.log("load ", project.name, " ", load);
   return project?.video === true ? (
@@ -29,7 +30,13 @@ export default function BlockGrid({ isPhotoLoaded, project }) {
     // <div>
     //   <video playsinline muted autoplay loop width="250" src="test_mute.mp4"></video>
     // </div>
+    
     <Box
+      //as={motion.div}
+      //layoutId={project.id}
+      //onClick={() => {indexAnimate === false && setIndexAnimate(project.id)}}
+      onClick={onOpen}
+      initial={{ borderRadius: "0.6rem" }}
       overflow={false}
       w="100%"
       h="100%"
@@ -37,17 +44,18 @@ export default function BlockGrid({ isPhotoLoaded, project }) {
     >
       {!load && <Plug />}
       
-      <Image
+       <Image
           layout="fill"
           onLoadingComplete={(e) => setLoad(true)}
           objectFit="cover"
           quality={100}
           alt={project.name}
           priority
-          fill={'true'}
-          // loading="lazy"
+          //fill={'true'}
+          //loading="lazy"
           src={`https://better-autumn.pockethost.io/api/files/${project.collectionId}/${project.id}/${project.main_image}`}
         ></Image>
+     
     </Box>
   );
 }

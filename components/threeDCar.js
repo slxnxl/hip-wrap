@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { useMemo, useRef } from 'react'
+import {useMemo, useRef, useState} from 'react'
 import {Canvas, applyProps, useFrame, useLoader} from '@react-three/fiber'
 import {
     Environment,
@@ -19,11 +19,12 @@ import {Porshe} from "../public/911-transformed";
 // TODO можно настроить камеры как в исходном решении
 
 export function CarThree  () {
+    const [color, setColor] = useState("white");
     // TODO    проработать положение и тени на машинах
     return (
-    <Canvas shadows dpr={[1, 2]} camera={{ position: [0, -5, 1], fov: 10 }}>
+    <Canvas shadows dpr={[1, 2]} camera={{ position: [0, -15, 0], fov: 20 }}>
         {/*<Porsche scale={1.6} position={[0, -0.20, 0]} rotation={[0, Math.PI / 5, 0]} />*/}
-        <Ferarri scale={1.6} position={[0, -1.6, 0]} rotation={[0, Math.PI / 5, 0]} />
+        <Ferarri scale={1.6} position={[0, -1.6, 0]} rotation={[0, Math.PI / 5, 0]} color={color}/>
         {/*<Porshe scale={1.6} position={[0, -1.6, 0]} rotation={[0, Math.PI / 5, 0]} />*/}
         {/*<CreateLogoInCar/>*/}
         <spotLight position={[0, 15, 0]} angle={0.3} penumbra={1} castShadow intensity={2} shadow-bias={-0.0001} />

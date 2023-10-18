@@ -50,6 +50,7 @@ export default function ContactUSBtn() {
                     <ModalCloseButton className="modal_close"/>
                     <ModalBody>
                         <InputGroup>
+                            {/* eslint-disable-next-line react/no-children-prop*/}
                             <InputLeftAddon children='+7' className="modal_input"/>
                             <Input as={InputMask} mask="*** *** ** **" maskChar={null} type='tel'
                                    placeholder='Номер телефона' className="modal_input"/>

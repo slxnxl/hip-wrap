@@ -18,11 +18,11 @@ export default function ScrollImages() {
                 const sponsorData = await pb.collection('sponsorBrands').getFullList({
                     sort: '-created',
                 })
-                console.log("sponsorData: ", sponsorData)
+                //console.log("sponsorData: ", sponsorData)
                 setData(await JSON.parse(JSON.stringify(sponsorData)))
                 setIsLoaded(true)
             } catch (err) {
-                console.log("car err: ", err)
+                //console.log("car err: ", err)
                 return err
             }
         }
@@ -34,19 +34,20 @@ export default function ScrollImages() {
 
     // после получения данных по спонсорам создаем images компоненты (думаю можно потом все в 1 useEffect воткнуть)
     useEffect(() => {
-        console.log("user 2 data: ", data)
-        console.log("ready: ", isReadyBlocks)
+        //console.log("user 2 data: ", data)
+        //console.log("ready: ", isReadyBlocks)
         const result = []
         data.forEach((e) => {
             result.push(
                 <div className="carousel_item">
-                    <p className="carousel_title">123 + logopicture</p>
+                    <p className="carousel_title">{e.name} + logopicture</p>
                     <div className="carousel_text">All-new strikingly thin
                         design so you can work
                     </div>
                 </div>)
         })
-        setImageBlocks([...result])
+        // TODO: Костыль, нужно бы переделать потом
+        setImageBlocks([...result, ...result, ...result])
         setIsReady(true)
 
     }, [isLoaded]);
@@ -93,12 +94,12 @@ export default function ScrollImages() {
 
             setImageBlocks(newimageBlocks)
         }
-        console.log(imageBlocks);
+        //console.log(imageBlocks);
         
     }, [ref.current]) //Выполняется в момент рендеринга DOM и определения ширины.
 
     // TODO вот это значение всегда []
-    console.log("image: ", imageBlocks)
+    //console.log("image: ", imageBlocks)
     return (
         (isReadyBlocks && imageBlocks.length > 0)
             ? (<Box
