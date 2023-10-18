@@ -21,7 +21,7 @@ export default function Grids({ target }) {
   // запрос данных для сетки
   useEffect(() => {
     if (!fetching) {
-      setRenderedPhoto(true)
+      setRenderedPhoto(true);
     }
   }, [fetching]);
 
@@ -85,10 +85,10 @@ export default function Grids({ target }) {
     //проверка, что мы приближаемся к краю страницы
     //console.log(e.target.documentElement.scrollHeight)
     ////console.log(e.target.documentElement.scrollTop);
-    ////console.log(window.innerHeight);
-    console.log(e.target.documentElement.scrollHeight -
-      (e.target.documentElement.scrollTop + window.innerHeight));
-      //console.log(photos.length, totalCount);
+    //console.log(window.innerHeight);
+    //console.log(e.target.documentElement.scrollHeight -
+    //  (e.target.documentElement.scrollTop + window.innerHeight));
+    //console.log(photos.length, totalCount);
     //console.log("isMobile", isMobile);
     if (isMobile[0] === true) {
       if (
@@ -97,21 +97,23 @@ export default function Grids({ target }) {
           1000 &&
         photos.length < totalCount
       ) {
-        console.log('загрузка началась');
+        //console.log('загрузка началась');
         setFetching(true);
       }
-    } else  {if (
-      e.target.documentElement.scrollHeight -
-        (e.target.documentElement.scrollTop + window.innerHeight) <
-        1500 &&
-      photos.length < totalCount
-    ) {
-      console.log('загрузка началась');
-      setFetching(true);
-    }}
+    } else {
+      if (
+        e.target.documentElement.scrollHeight -
+          (e.target.documentElement.scrollTop + window.innerHeight) <
+          1500 &&
+        photos.length < totalCount
+      ) {
+        console.log("загрузка началась");
+        setFetching(true);
+      }
+    }
   };
 
- // console.log("photos: ", photos);
+  // console.log("photos: ", photos);
 
   return (
     <>
@@ -122,13 +124,12 @@ export default function Grids({ target }) {
           array={[...photos]}
         />
       )}
-      {/* <SuspenseComponent array={[...photos]}></SuspenseComponent>  */}
+      {fetching && <LoaderElement />}
     </>
-    // TODO add Suspense
   );
 }
 
-function Plug() {
+export function Plug() {
   return (
     <Player
       autoplay

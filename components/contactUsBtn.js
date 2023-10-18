@@ -22,7 +22,7 @@ export default function ContactUSBtn() {
                 position='fixed'
                 bottom='20px'
                 right={['16px', '84px']}
-                zIndex={1}
+                zIndex={10}
                 bg='#3F3EC2'
                 color='#fff'
                 boxShadow='0 0 4px #fff'
