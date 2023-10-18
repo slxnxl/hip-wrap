@@ -15,7 +15,8 @@ import BlockGrid from "./blockGrid";
 import { LayoutGroup, motion, AnimatePresence, animate } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import MotionModal from "./tesModal";
+import ModalProjectView from "../modalProjectView"
+
 // import getPhotoUrl from "../../utils/getPhotourl";
 export default function GridComponent({ isFirstPhotoLoaded, array }) {
   const isMobile = useMediaQuery("(max-width: 640px)");
@@ -26,31 +27,6 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
     setIndexAnimate(false);
   }, []);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useEffect(() => {
-    console.log("indexAnimate", indexAnimate);
-    console.log("net: ", net);
-    setOpenProject(net.find((item) => item.id === indexAnimate));
-    console.log("openProject", openProject);
-    onOpen();
-  }, [indexAnimate]);
-
-  useEffect(() => {
-    if (isOpen !== true) {
-      setIndexAnimate(false);
-    }
-  }, [isOpen]);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-
 
   //массив с 3мя рядами сетки
   let net = [];
@@ -76,8 +52,6 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
           <BlockGrid
             project={photo}
             onOpen={onOpen}
-            setIndexAnimate={setIndexAnimate}
-            indexAnimate={indexAnimate}
           ></BlockGrid>
         </div>
       );
@@ -116,24 +90,20 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
       {array.map((photo, index) => {
         return (
           <div className="cell" key={index}>
-            <BlockGrid isPhotoLoaded={123} project={photo}></BlockGrid>
+            <BlockGrid  project={photo}
+            onOpen={onOpen} isPhotoLoaded={123} project={photo}></BlockGrid>
           </div>
         );
       })}
-    </div>
-  ) : (
-    <>
-    <div id="wrapper" className="wrapper">
-       {net.map((item) => item)}
-    </div>
-    <Modal isOpen={isOpen} onClose={onClose}>
+          <Modal isOpen={isOpen} onClose={onClose}  isCentered={true}>
     <ModalOverlay/>
     <ModalContent className="modal">
         <ModalHeader>
         </ModalHeader>
         <ModalCloseButton className="modal_close"/>
         <ModalBody>
-        <Image
+        <ModalProjectView/>
+        {/*<Image
                           //layout="fill"
                           width="500px"
                           height="500px"
@@ -147,17 +117,42 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
                           src={
                             "https://better-autumn.pockethost.io/api/files/lnto5n3zycdk3cm/r5jdlfc5tkrzzo7/project_2_AWhRimGYt9.jpg"
                           }
-                        ></Image>
+                        ></Image>*/}
         </ModalBody>
 
         <ModalFooter>
             <Button colorScheme='purple' mr={3} onClick={onClose} className="modal_footer-btn">
-                Отправить
+                Связатся с нами
+            </Button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>
+    </div>
+  ) : (
+    <>
+    <div id="wrapper" className="wrapper">
+       {net.map((item) => item)}
+    </div>
+    <Modal isOpen={isOpen} onClose={onClose}  isCentered={true}>
+    <ModalOverlay/>
+    <ModalContent className="modal">
+        <ModalHeader>
+        </ModalHeader>
+        <ModalCloseButton className="modal_close"/>
+        <ModalBody>
+        <ModalProjectView/>
+        </ModalBody>
+
+        <ModalFooter>
+            <Button colorScheme='purple' mr={3} onClick={onClose} className="modal_footer-btn">
+                Связатся с нами
             </Button>
         </ModalFooter>
     </ModalContent>
 </Modal>
 </>
+//нерабочие наработки по анимации
+//https://github.com/framer/motion/issues/905
     //<LayoutGroup>
     //  <div id="wrapper" className="wrapper">
     //    {net.map((item) => item)}
@@ -193,5 +188,7 @@ export default function GridComponent({ isFirstPhotoLoaded, array }) {
     //    </AnimatePresence>
     //  </div>
     //</LayoutGroup>
-  );
+  )
+  
+  ;
 }
