@@ -4,7 +4,7 @@ import {
     ModalContent, ModalHeader,
     ModalCloseButton, ModalBody,
     ModalFooter, InputGroup,
-    InputLeftAddon, Input
+    InputLeftAddon, Input, Spinner
 } from "@chakra-ui/react";
 import {Player} from "@lottiefiles/react-lottie-player";
 import { useState } from "react";
@@ -17,12 +17,14 @@ export default function ContactUSBtn() {
     // const [open, setOpen] = useState(false);
     const {isOpen, onOpen, onClose} = useDisclosure()
     const [number, setNumber] = useState('')
+    const [sending, setSending] = useState(false)
 
     const sendData = () => {
         if (number.length <13) {
             alert("Пожалуйста, введите номер телефона");
             return;
           }
+          setSending(true)
         const formData = {
             number: number,
             product: null,
@@ -38,6 +40,8 @@ export default function ContactUSBtn() {
           })
             .then((response) => {
               if (response.ok) {
+                onClose()
+                setSending(false)
                 return response.json();
               } else {
                 throw new Error('Failed to send data');
@@ -93,9 +97,11 @@ export default function ContactUSBtn() {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme='purple' mr={3} onClick={sendData} className="modal_footer-btn">
-                            Отправить
-                        </Button>
+                        {sending ? (
+                            <Spinner />
+                        ) : <Button colorScheme='purple' mr={3} onClick={sendData} className="modal_footer-btn">
+                        Отправить
+                    </Button>}
                     </ModalFooter>
                 </ModalContent>
             </Modal>
