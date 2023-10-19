@@ -24,6 +24,7 @@ import { useState } from "react";
     // const [open, setOpen] = useState(false);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [number, setNumber] = useState('')
+    const [sending, setSending] = useState(false)
 
   const sendData = () => {
     //TODO сделать лучше обработку и унифицировать
@@ -46,6 +47,7 @@ import { useState } from "react";
         })
           .then((response) => {
             if (response.ok) {
+              onClose()
               return response.json();
             } else {
               throw new Error('Failed to send data');

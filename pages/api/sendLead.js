@@ -22,6 +22,7 @@ export default async function handler (req, res){
             "product": product,
         };
         await pb.collection('leads').create(data);
+        sendSubcription(data)
         // Send a response
         res.status(200).json({ message: 'Data received successfully' });
       } catch (error) {
@@ -34,10 +35,11 @@ export default async function handler (req, res){
   
 
 
-const key = "bf75272a-5ce2-4307-904c-e4c649fca85c";
+const key = "b03e9bc0-74d6-4d5f-8789-04f66f6e9baa";
 
 async function sendSubcription(data) {
     try {
+        console.log("data: ", data);
         const res = await fetch(
             'https://api.staticforms.xyz/submit',
             {
@@ -47,9 +49,9 @@ async function sendSubcription(data) {
                 },
                 body: JSON.stringify({
                     accessKey: key,
-                    subject: 'eradevelop new subscriber',
+                    subject: 'Новая заявка',
                     honeypot: '',
-                    email: data.mail,
+                    phone: "+7 "+data["phone"]
                 }),
             }
         )
