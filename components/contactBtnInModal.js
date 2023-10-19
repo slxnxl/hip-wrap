@@ -14,6 +14,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { Player } from "@lottiefiles/react-lottie-player";
+import { useState } from "react";
 
 import InputMask from "react-input-mask";
 
@@ -21,6 +22,41 @@ import InputMask from "react-input-mask";
 export default function ContactUSBtnInModal() {
   // const [open, setOpen] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [number, setNumber] = useState('')
+
+  const sendData = () => {
+    //TODO сделать лучше обработку и унифицировать
+    if (number.length <13) {
+      alert("Пожалуйста, введите номер телефона");
+      return;
+    }
+      const formData = {
+          number: number,
+          product: null,
+          page: window?.location?.pathname + " project"
+        };
+
+        fetch('/api/sendLead', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error('Failed to send data');
+            }
+          })
+          .then((data) => {
+            console.log('Response from the API:', data);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+  }
 
   return (
     <>
@@ -63,6 +99,7 @@ export default function ContactUSBtnInModal() {
               {/* eslint-disable-next-line react/no-children-prop*/}
               <InputLeftAddon children="+7" className="modal_input" />
               <Input
+              onChange={(e) => setNumber(e.target.value)}
                 as={InputMask}
                 mask="*** *** ** **"
                 maskChar={null}
@@ -77,7 +114,7 @@ export default function ContactUSBtnInModal() {
             <Button
               colorScheme="purple"
               mr={3}
-              onClick={onClose}
+              onClick={sendData}
               className="modal_footer-btn"
             >
               Отправить
