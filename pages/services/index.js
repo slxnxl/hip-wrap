@@ -1,38 +1,26 @@
 // посадочная страница
 
 import {
-  Box,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Center,
-  Flex,
-  Heading,
-  List,
-  ListIcon,
-  ListItem,
-  Text,
-  Wrap,
-  WrapItem,
-  flexbox,
-  useMediaQuery,
+    Box,
+    Card,
+    CardBody,
+    CardFooter,
+    CardHeader,
+    Flex,
+    Heading,
+    List,
+    ListIcon,
+    ListItem,
+    Text,
+    useMediaQuery,
+    Wrap,
+    WrapItem,
 } from "@chakra-ui/react";
-import {
-  MdCheckCircle,
-  MdGrade,
-  MdHotelClass,
-  MdAutoAwesome,
-  MdDirectionsCarFilled,
-  MdDirectionsCar,
-  MdStar,
-  MdFlashOn,
-} from "react-icons/md";
+import {MdDirectionsCarFilled,} from "react-icons/md";
 import React from "react";
 import Image from "next/image";
 import FilterButton from "../../components/filterButton";
-import { pb } from "../../utils/pb";
+import {pb} from "../../utils/pb";
 //import SliderServises from "../../components/sliderServises";
 
 //сюда статик пропс

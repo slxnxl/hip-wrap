@@ -1,4 +1,4 @@
-import {Box, List, ListIcon, ListItem, Text} from "@chakra-ui/react";
+import {Box, Text} from "@chakra-ui/react";
 
 export default function Complex () {
 

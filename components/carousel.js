@@ -1,8 +1,7 @@
-import { Box, Flex } from '@chakra-ui/react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
-import { pb } from "../utils/pb";
-import { compileString } from "sass";
+import {Box, Flex} from '@chakra-ui/react'
+import {AnimatePresence, motion} from 'framer-motion'
+import {useEffect, useRef, useState} from 'react'
+import {pb} from "../utils/pb";
 
 export default function ScrollImages() {
     const [isLoaded, setIsLoaded] = useState(false)

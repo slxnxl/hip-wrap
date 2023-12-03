@@ -1,6 +1,5 @@
-import {Box, Flex, Spacer, useMediaQuery} from "@chakra-ui/react";
-import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
-
+import {Box, useMediaQuery} from "@chakra-ui/react";
+import {Map, Placemark, YMaps} from '@pbe/react-yandex-maps';
 
 
 export default function Store() {

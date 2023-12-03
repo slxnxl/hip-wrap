@@ -1,9 +1,8 @@
 "use client";
-import { AspectRatio, Box, Text, Skeleton } from "@chakra-ui/react";
+import {Box} from "@chakra-ui/react";
 import Image from "next/image";
-import { Suspense, useState } from "react";
-import { Player } from "@lottiefiles/react-lottie-player";
-import { LayoutGroup, motion, AnimatePresence } from "framer-motion";
+import {useState} from "react";
+import {Player} from "@lottiefiles/react-lottie-player";
 
 
 export default function BlockGrid({ isPhotoLoaded, project,  onOpen, setOpenProject}) {

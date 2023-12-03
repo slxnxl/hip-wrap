@@ -1,7 +1,7 @@
 import Footer from './footer'
 import Header from './header'
 import ContactUSBtn from './contactUsBtn'
- 
+
 export default function Layout({ children }) {
   return (
     <div className='container'>

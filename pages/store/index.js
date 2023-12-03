@@ -1,25 +1,19 @@
 import React from "react";
 import {
-  Box,
-  Card,
-  CardBody,
-  Heading,
-  SimpleGrid,
-  ListIcon,
-  Stack,
-  Text,
-  Button,
-  ButtonGroup,
-  CardFooter,
-  Divider,
-  useMediaQuery,
-  Flex,
-  List,
-  ListItem,
-  UnorderedList,
+    Box,
+    Card,
+    CardBody,
+    CardFooter,
+    Divider,
+    Flex,
+    Heading,
+    SimpleGrid,
+    Stack,
+    Text,
+    useMediaQuery,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import { pb } from "../../utils/pb";
+import {pb} from "../../utils/pb";
 import ContactUSBtnInStore from "../../components/storeModalBtn";
 
 export default function Store(props) {

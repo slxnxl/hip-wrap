@@ -1,6 +1,5 @@
-import { Box, Center, Container, Flex, Stack, Tab, TabList, Tabs } from "@chakra-ui/react";
-import React, { useState } from "react";
-import {useEffect} from "react";
+import {Center, Container, Flex, Tab, TabList, Tabs} from "@chakra-ui/react";
+import React from "react";
 
 
 // export async function getStaticProps() {

@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   swcMinify: true,
+  fallback: true,
   concurrentFeatures: true,
   async redirects() { return [{
     source: "/api/files/:path*",
@@ -15,6 +16,9 @@ const nextConfig = {
   compiler: {
     removeConsole: false,
 },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 }
 
 module.exports = nextConfig

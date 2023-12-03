@@ -1,13 +1,12 @@
-import { Box } from "@chakra-ui/react";
-import { Player } from "@lottiefiles/react-lottie-player";
+'use client'
+import {Box} from "@chakra-ui/react";
 import Head from "next/head";
 import React, { Suspense } from "react";
 import FilterButton from "../components/filterButton";
-import Footer from "../components/footer";
 import Grids from "../components/grids";
 import styles from "../styles/Home.module.css";
-import { pb } from "../utils/pb";
-import {CarThree} from "../components/threeDCar";
+import {pb} from "../utils/pb";
+import { CarThree } from "../components/threeDCar";
 
 export default function Home(props) {
   const [target, setTarget] = React.useState(0);
@@ -23,9 +22,9 @@ export default function Home(props) {
       </Head>
       <main>
         <Box w="100%" h="50vh">
-          {/*<Suspense fallback={<p>loading...</p>}>
+          <Suspense fallback={<p>loading...</p>}>
              <CarThree></CarThree>
-          </Suspense>*/}
+          </Suspense>
         </Box>
 
         <FilterButton func={setTarget} data={props.posts.data}></FilterButton>

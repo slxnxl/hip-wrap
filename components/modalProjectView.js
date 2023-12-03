@@ -1,18 +1,10 @@
-import {
-  Box,
-  Card,
-  CardBody,
-  CardFooter,
-  Divider,
-  Tag,
-  TagLabel,
-} from "@chakra-ui/react";
+import {Tag, TagLabel,} from "@chakra-ui/react";
 import ImageGallery from "react-image-gallery";
 //import Image from "next/image";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { useEffect, useState } from "react";
-import { Plug } from "./grids";
-import { pb } from "../utils/pb";
+import {useEffect, useState} from "react";
+import {Plug} from "./grids";
+import {pb} from "../utils/pb";
 
 export default function ModalProjectView({ project }) {
   const [isLoad, setIsLoad] = useState(false);
@@ -89,7 +81,6 @@ export default function ModalProjectView({ project }) {
       items={images}
       showThumbnails={false}
       showPlayButton={false}
-      showThumbnails={false}
       lazyLoad={true}
       onImageLoad={(e) => setIsLoad(true)}
     />
