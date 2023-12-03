@@ -1,9 +1,9 @@
 "use client";
-import { Player } from "@lottiefiles/react-lottie-player";
-import { useEffect, useState } from "react";
+import {Player} from "@lottiefiles/react-lottie-player";
+import {useEffect, useState} from "react";
 import GridComponent from "../components/grid-project/index";
-import { pb } from "../utils/pb";
-import { useMediaQuery } from "@chakra-ui/react";
+import {pb} from "../utils/pb";
+import {useMediaQuery} from "@chakra-ui/react";
 
 export default function Grids({ target }) {
   const [photos, setPhotos] = useState([]);

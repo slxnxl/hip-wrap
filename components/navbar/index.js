@@ -1,6 +1,6 @@
 import * as React from "react";
 import {useEffect, useRef} from "react";
-import {motion, sync, useCycle} from "framer-motion";
+import {motion, useCycle} from "framer-motion";
 import {MenuItem} from "./menuItem";
 import {MenuToggle} from "./menuToggle";
 import {Link} from "@chakra-ui/react";

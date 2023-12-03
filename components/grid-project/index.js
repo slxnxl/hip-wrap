@@ -1,20 +1,16 @@
 import {
-  Box,
-  Button,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  useDisclosure,
+    Modal,
+    ModalBody,
+    ModalCloseButton,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    ModalOverlay,
+    useDisclosure,
 } from "@chakra-ui/react";
 import useMediaQuery from "../../utils/useMediaQuery";
 import BlockGrid from "./blockGrid";
-import { LayoutGroup, motion, AnimatePresence, animate } from "framer-motion";
-import { useCallback, useEffect, useState } from "react";
-import Image from "next/image";
+import {useCallback, useState} from "react";
 import ModalProjectView from "../modalProjectView";
 
 import ContactUSBtnInModal from "../contactBtnInModal";

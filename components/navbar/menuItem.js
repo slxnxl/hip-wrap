@@ -1,6 +1,6 @@
 import * as React from "react";
-import { motion } from "framer-motion";
-import { Button } from "@chakra-ui/react";
+import {motion} from "framer-motion";
+import {Button} from "@chakra-ui/react";
 import Link from "next/link";
 
 const variants = {

@@ -1,9 +1,8 @@
-import {Box, Flex, Text, Image, Divider} from "@chakra-ui/react"
+import {Box, Divider, Flex, Text} from "@chakra-ui/react"
 import {FiArrowUpRight} from "react-icons/fi"
 import {FaLocationDot} from "react-icons/fa6"
-import {useEffect, useRef, useState} from "react"
+import {useEffect, useState} from "react"
 import ScrollImages from "./carousel"
-import {Player} from "@lottiefiles/react-lottie-player"
 import {pb} from "../utils/pb"
 
 export default function Footer() {
@@ -110,7 +109,7 @@ export default function Footer() {
                     <Text as="b">-</Text>
                     <Box display="flex" flexDirection="row">
                         <FaLocationDot color="#3F3EC2" size="25px" className="location_icon"/>
-                        <a href={state.location}  target="_blank"><Text as="b">показать на карте</Text> </a>
+                        <a href={state.location}  ><Text as="b">показать на карте</Text> </a>
                     </Box>
                 </Box>
                 <Box display="flex" flexDirection="colunm>" mt='44px'>

@@ -1,13 +1,20 @@
 import {
-    Box, Button, Modal,
-    useDisclosure, ModalOverlay,
-    ModalContent, ModalHeader,
-    ModalCloseButton, ModalBody,
-    ModalFooter, InputGroup,
-    InputLeftAddon, Input, Spinner
+    Button,
+    Input,
+    InputGroup,
+    InputLeftAddon,
+    Modal,
+    ModalBody,
+    ModalCloseButton,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    ModalOverlay,
+    Spinner,
+    useDisclosure
 } from "@chakra-ui/react";
 import {Player} from "@lottiefiles/react-lottie-player";
-import { useState } from "react";
+import {useState} from "react";
 
 import InputMask from "react-input-mask";
 

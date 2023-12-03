@@ -1,25 +1,16 @@
+'use client'
+/* eslint-disable react/no-unknown-property */
 import * as THREE from 'three'
 import {useMemo, useRef, useState} from 'react'
-import {Canvas, applyProps, useFrame, useLoader} from '@react-three/fiber'
-import {
-    Environment,
-    Lightformer,
-    Float,
-    useGLTF,
-    BakeShadows,
-    ContactShadows,
-    OrbitControls,
-    useTexture, Decal
-} from '@react-three/drei'
-import { LayerMaterial, Color, Depth } from 'lamina'
-import {MeshPhongMaterial, TextureLoader} from "three";
-import {Ferarri } from "../public/Black_ferrari_488_gtb";
-import {Porshe} from "../public/911-transformed";
+import {applyProps, Canvas, useFrame} from '@react-three/fiber'
+import {BakeShadows, ContactShadows, Environment, Float, Lightformer, OrbitControls, useGLTF} from '@react-three/drei'
+import {Color, Depth, LayerMaterial} from 'lamina'
+import {Ferarri} from "./Black_ferrari_488_gtb";
 
 // TODO можно настроить камеры как в исходном решении
 
 export function CarThree  () {
-    const [color, setColor] = useState("white");
+    const [color, setColor] = useState("gray");
     // TODO    проработать положение и тени на машинах
     return (
     <Canvas shadows dpr={[1, 2]} camera={{ position: [0, -15, 0], fov: 20 }}>

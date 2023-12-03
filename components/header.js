@@ -1,14 +1,7 @@
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Container,
-  Flex,
-  Link
-} from "@chakra-ui/react";
+import {Box, Button, ButtonGroup, Container, Flex, Link} from "@chakra-ui/react";
 import Image from 'next/image';
 import useMediaQuery from "../utils/useMediaQuery";
-import { Navbar } from "./navbar";
+import {Navbar} from "./navbar";
 // import '../styles/logo.css'
 
 // https://www.framer.com/motion/examples/
